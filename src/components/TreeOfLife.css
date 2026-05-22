@@ -1,0 +1,83 @@
+.tree-of-life {
+  background: #0d0d14;
+  border: 1px solid #2a2a35;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.tree-header {
+  margin-bottom: 16px;
+}
+
+.tree-header h3 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #c9a227;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.tree-header p {
+  font-size: 0.7rem;
+  color: #5a5a6a;
+}
+
+.tree-svg {
+  width: 100%;
+  height: auto;
+}
+
+.tree-path {
+  stroke: #4a4a58;
+  stroke-width: 0.6;
+  transition: stroke 0.3s;
+}
+
+.tree-path-clickable {
+  cursor: pointer;
+}
+
+.tree-path.lit {
+  stroke: #e8c84a;
+  stroke-width: 1.0;
+}
+
+.tree-path-label {
+  font-size: 5.5px;
+  fill: #6a6a78;
+  text-anchor: middle;
+  font-family: serif;
+  transition: fill 0.3s;
+}
+
+.tree-path-label.lit {
+  fill: #e8c84a;
+  font-weight: bold;
+}
+
+.tree-sefira circle {
+  fill: #2a2a35;
+  transition: fill 0.3s;
+}
+
+.tree-sefira.highlighted circle {
+  fill: #c9a227;
+}
+
+.tree-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #1a1a24;
+}
+
+.tree-legend span {
+  font-size: 0.65rem;
+  color: #5a5a6a;
+}
+
+.legend-lit {
+  color: #c9a227;
+}
