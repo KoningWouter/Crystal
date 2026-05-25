@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import './GuidedMeditation.css'
 import { getAudioGenerator } from '../utils/AudioGenerator'
+import { Calibration } from './Calibration'
 
 interface MeditationStep {
   sefira: string
@@ -67,6 +68,7 @@ const daatMeditation: MeditationStep[] = [
 ]
 
 export function GuidedMeditation() {
+  const [showCalibration, setShowCalibration] = useState(true)
   const [active, setActive] = useState(false)
   const [step, setStep] = useState(0)
   const [textVisible, setTextVisible] = useState(false)
@@ -128,6 +130,22 @@ export function GuidedMeditation() {
     }
   }
 
+  // Show calibration before starting
+  if (showCalibration) {
+    return (
+      <Calibration 
+        onComplete={() => {
+          setShowCalibration(false)
+          setActive(true)
+        }}
+        onCancel={() => {
+          setShowCalibration(false)
+          setActive(true)
+        }}
+      />
+    )
+  }
+
   if (!active) {
     return (
       <div className="meditation-start">
@@ -152,6 +170,15 @@ export function GuidedMeditation() {
         </div>
         <button className="meditation-start-btn" onClick={() => setActive(true)}>
           Start
+        </button>
+        <button 
+          className="meditation-recalibrate-btn"
+          onClick={() => {
+            setActive(false)
+            setShowCalibration(true)
+          }}
+        >
+          Opnieuw calibreren
         </button>
       </div>
     )

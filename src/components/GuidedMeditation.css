@@ -213,3 +213,20 @@
   background: #c9a227;
   color: #0a0a0f;
 }
+
+/* === Recalibrate Button === */
+
+.meditation-recalibrate-btn {
+  background: transparent;
+  border: none;
+  color: #5a5a6a;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 8px 16px;
+  margin-top: 16px;
+  transition: color 0.2s;
+}
+
+.meditation-recalibrate-btn:hover {
+  color: #a8a498;
+}
