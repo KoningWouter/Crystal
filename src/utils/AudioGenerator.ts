@@ -231,14 +231,25 @@ export class AudioGenerator {
 
   stopTone(id: string): void {
     const osc = this.oscillators.get(id);
-    if (!osc) return;
-    const ctx = this.audioContext!;
-    osc.stop(ctx.currentTime + 0.2);
+    if (!osc || !this.audioContext || !this.masterGain) return;
+    const ctx = this.audioContext;
+    // Fade out first (200ms) om klik te voorkomen
+    this.masterGain.gain.setValueAtTime(this.config.volume, ctx.currentTime);
+    this.masterGain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.2);
+    osc.stop(ctx.currentTime + 0.25);
     this.oscillators.delete(id);
   }
 
   stopAll(): void {
-    this.oscillators.forEach((_, id) => this.stopTone(id));
+    if (!this.audioContext || !this.masterGain) return;
+    // Fade out masterGain once for all oscillators
+    this.masterGain.gain.setValueAtTime(this.config.volume, this.audioContext.currentTime);
+    this.masterGain.gain.linearRampToValueAtTime(0, this.audioContext.currentTime + 0.2);
+    // Stop all oscillators immediately (they'll finish their fade via masterGain)
+    this.oscillators.forEach((osc) => {
+      try { osc.stop(this.audioContext!.currentTime + 0.3); } catch (_) {}
+    });
+    this.oscillators.clear();
   }
 
   setVolume(vol: number): void {
