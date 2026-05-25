@@ -135,8 +135,8 @@ export function GuidedMeditation() {
   if (!active) {
     return (
       <div className="meditation-start">
-        <h3>⚿ Geleide Meditatie</h3>
-        <p className="meditation-start-sub">Van Malkuth naar Da'at — en terug</p>
+        <h3>⚿ Guided Meditation</h3>
+        <p className="meditation-start-sub">From Malkuth to Da'at — and back</p>
         <div className="audio-volume-control">
           <label>🔊 {Math.round(volume * 100)}%</label>
           <input
@@ -155,7 +155,7 @@ export function GuidedMeditation() {
           />
         </div>
         <button className="meditation-start-btn" onClick={() => setActive(true)}>
-          Begin
+          Start
         </button>
       </div>
     )
@@ -184,7 +184,7 @@ export function GuidedMeditation() {
 
       {current.breath && (
         <div className={`meditation-breath ${textVisible ? 'visible' : ''}`}>
-          adem: {current.breath}
+          breath: {current.breath}
         </div>
       )}
 
@@ -197,11 +197,11 @@ export function GuidedMeditation() {
       <div className={`meditation-nav ${textVisible ? 'visible' : ''}`}>
         {step > 0 && (
           <button className="meditation-btn prev" onClick={prev}>
-            ← Vorige
+            ← Previous
           </button>
         )}
         <button className="meditation-btn next" onClick={next}>
-          {step === daatMeditation.length - 1 ? 'Einde' : 'Verder →'}
+          {step === daatMeditation.length - 1 ? 'End' : 'Next →'}
         </button>
       </div>
     </div>

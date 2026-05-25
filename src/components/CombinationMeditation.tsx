@@ -108,14 +108,14 @@ export function CombinationMeditation() {
     return (
       <div className="combo-meditation" style={{ textAlign: 'left' }}>
         <div className="combo-meditation-start">
-          <h3>Meditatie op Combinatie</h3>
+          <h3>Meditation on Combination</h3>
           <p className="combo-meditation-desc">
-            De vier stappen: letters apart, combinatie als geheel, het getal en de boom, stil worden.
+            Four steps: letters apart, combination as a whole, the number and the tree, becoming still.
           </p>
           
           <div className="combo-meditation-input-wrap">
             <p className="combo-meditation-input-label">
-              Typ de letters die je wilt onderzoeken
+              Type the letters you want to explore
             </p>
             <input
               type="text"
@@ -167,7 +167,7 @@ export function CombinationMeditation() {
           className="combo-meditation-reset"
           onClick={handleReset}
         >
-          ← Terug
+          ← Back
         </button>
         <span className="combo-meditation-progress">
           {currentStep + 1} / {steps.length}
@@ -182,7 +182,7 @@ export function CombinationMeditation() {
         <span className="combo-meditation-step-title">{step.title}</span>
         <p className="combo-meditation-step-text">{step.text}</p>
         <div className="combo-meditation-breath">
-          <span className="combo-meditation-breath-label">Adem</span>
+          <span className="combo-meditation-breath-label">Breath</span>
           <span className="combo-meditation-breath-value">{step.breath}</span>
         </div>
       </div>
@@ -193,13 +193,13 @@ export function CombinationMeditation() {
           onClick={prev}
           disabled={currentStep === 0}
         >
-          Vorige
+          Previous
         </button>
         <button
           className="combo-meditation-next"
           onClick={next}
         >
-          {isLast ? 'Klaar' : 'Verder →'}
+          {isLast ? 'Done' : 'Next →'}
         </button>
       </div>
 

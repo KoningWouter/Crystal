@@ -137,7 +137,7 @@ export function GematriaCalculator() {
     <div className="gematria">
       <div className="gematria-header">
         <h3>גמטריה</h3>
-        <p className="gematria-sub">Typ Hebreeuwse letters</p>
+        <p className="gematria-sub">Type Hebrew letters</p>
       </div>
 
       <div className="gematria-input-wrap">
@@ -158,7 +158,7 @@ export function GematriaCalculator() {
           className="gematria-play-btn"
           onClick={() => input.trim() && playLetterTones(input)}
           disabled={!input.trim()}
-          title="Speel frequentie"
+          title="Play frequency"
         >
           🔊
         </button>
@@ -189,7 +189,7 @@ export function GematriaCalculator() {
       </div>
 
       <div className="gematria-known">
-        <p className="gematria-known-title">Bekende waarden</p>
+        <p className="gematria-known-title">Known values</p>
         <div className="gematria-known-list">
           {[
             { word: 'יהוה', val: 26 },
@@ -206,7 +206,7 @@ export function GematriaCalculator() {
       </div>
 
       <div className="gematria-search">
-        <p className="gematria-search-title">Vind combinaties</p>
+        <p className="gematria-search-title">Find combinations</p>
         <div className="gematria-search-row">
           <input
             type="number"
@@ -218,7 +218,7 @@ export function GematriaCalculator() {
             min="1"
           />
           <button className="gematria-search-btn" onClick={handleSearch} disabled={!searchTarget}>
-            Zoek
+            Search
           </button>
         </div>
       </div>
@@ -226,11 +226,11 @@ export function GematriaCalculator() {
       {showCombos && (
         <div className="gematria-results">
           {isSearching ? (
-            <p className="gematria-searching">Zoeken...</p>
+            <p className="gematria-searching">Searching...</p>
           ) : combos.length > 0 ? (
             <>
               <p className="gematria-results-title">
-                Combinaties voor {searchTarget} ({combos.length})
+                Combinations for {searchTarget} ({combos.length})
               </p>
               <div className="gematria-results-list">
                 {combos.map((combo, i) => (
@@ -250,7 +250,7 @@ export function GematriaCalculator() {
             </>
           ) : (
             <p className="gematria-no-results">
-              Geen 2-4 letter combinaties gevonden voor {searchTarget}
+              No 2-4 letter combinations found for {searchTarget}
             </p>
           )}
         </div>

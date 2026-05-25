@@ -91,14 +91,14 @@ function App() {
     <div className="app">
       <aside className="sidebar">
         <h1 className="title">⚿ Crystal</h1>
-        <p className="subtitle">22 Hebreeuwse Tekens</p>
+        <p className="subtitle">22 Hebrew Signs</p>
         <ul className="letter-list">
           <li
             className={`meditation-link ${showMeditation ? 'active' : ''}`}
             onClick={handleShowMeditation}
           >
             <span className="meditation-icon">☽</span>
-            <span className="meditation-name">Geleide Meditatie</span>
+            <span className="meditation-name">Guided Meditation</span>
           </li>
           <li
             className={`gematria-link ${showGematria ? 'active' : ''}`}
@@ -112,14 +112,14 @@ function App() {
             onClick={handleShowComboMeditation}
           >
             <span className="combo-icon">◈</span>
-            <span className="combo-name">Combinatie Meditatie</span>
+            <span className="combo-name">Combination Meditation</span>
           </li>
           <li
             className={`soundbath-link ${showSoundBath ? 'active' : ''}`}
             onClick={handleShowSoundBath}
           >
             <span className="soundbath-icon">♫</span>
-            <span className="soundbath-name">Geluidsblad</span>
+            <span className="soundbath-name">Sound Sheet</span>
           </li>
           {hebrewLetters.map((l: Letter) => (
             <li
@@ -162,19 +162,19 @@ function App() {
             <p className="detail-meaning">{selected.meaning}</p>
             {selected.meditation && (
               <div className="detail-meditation">
-                <h3>Meditatie</h3>
+                <h3>Meditation</h3>
                 <p>{selected.meditation}</p>
               </div>
             )}
             <div className="detail-notes">
-              <h3>Notities</h3>
+              <h3>Notes</h3>
               <textarea
                 key={selected.letter}
-                placeholder="Schrijf je notities hier..."
+                placeholder="Write your notes here..."
                 defaultValue={notes[selected.letter] || ''}
                 onBlur={(e) => saveNote(selected.letter, e.target.value)}
               />
-              {isSaving && <span className="notes-saving">Opslaan...</span>}
+              {isSaving && <span className="notes-saving">Saving...</span>}
             </div>
             <TreeOfLife
               letters={hebrewLetters}
@@ -187,7 +187,7 @@ function App() {
           </div>
         ) : (
           <div className="detail-empty">
-            <p>Selecteer een teken om de betekenis te zien</p>
+            <p>Select a sign to see its meaning</p>
           </div>
         )}
       </main>

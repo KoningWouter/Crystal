@@ -46,8 +46,8 @@ export function SoundBath() {
   return (
     <div className="soundbath">
       <div className="soundbath-header">
-        <h3>🎧 Geluidsbad</h3>
-        <p className="soundbath-sub">Binaural beats — hersengolven stemmen</p>
+        <h3>🎧 Sound Sheet</h3>
+        <p className="soundbath-sub">Binaural beats — brainwave tuning</p>
       </div>
 
       {!active ? (
@@ -71,7 +71,7 @@ export function SoundBath() {
           <div className="soundbath-info">
             <div className="soundbath-info-desc">{current.desc}</div>
             <div className="soundbath-info-freq">
-              <span className="soundbath-freq-label">Basis</span>
+              <span className="soundbath-freq-label">Base</span>
               <span className="soundbath-freq-value">{baseFreq} Hz</span>
               <span className="soundbath-freq-sep">+</span>
               <span className="soundbath-beat-value">{current.hz} Hz</span>
@@ -81,7 +81,7 @@ export function SoundBath() {
 
           <div className="soundbath-controls">
             <div className="soundbath-base-control">
-              <label>Grondtoon</label>
+              <label>Base tone</label>
               <div className="soundbath-base-btns">
                 {[396, 432, 528].map((f) => (
                   <button
