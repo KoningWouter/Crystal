@@ -1,0 +1,331 @@
+.soundbath {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  gap: 1.2rem;
+  min-height: 100%;
+}
+
+.soundbath-header {
+  text-align: center;
+}
+
+.soundbath-header h3 {
+  font-size: 1.4rem;
+  color: var(--color-gold, #c9a84c);
+  margin: 0;
+}
+
+.soundbath-sub {
+  color: var(--color-text-dim, #888);
+  font-size: 0.85rem;
+  margin: 0.3rem 0 0;
+}
+
+.soundbath-start,
+.soundbath-active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Brainwave selector */
+.brainwave-selector {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.4rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.brainwave-btn {
+  background: var(--color-bg-2, #1a1a2e);
+  border: 1px solid var(--color-border, #333);
+  border-radius: 8px;
+  padding: 0.5rem 0.3rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  transition: all 0.2s;
+}
+
+.brainwave-btn.active {
+  background: var(--color-gold-dim, rgba(201, 168, 76, 0.15));
+  border-color: var(--color-gold, #c9a84c);
+}
+
+.brainwave-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text, #eee);
+}
+
+.brainwave-hz {
+  font-size: 0.65rem;
+  color: var(--color-text-dim, #888);
+}
+
+/* Info block */
+.soundbath-info {
+  background: var(--color-bg-2, #1a1a2e);
+  border: 1px solid var(--color-border, #333);
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.soundbath-info-desc {
+  font-size: 0.85rem;
+  color: var(--color-text, #eee);
+  margin-bottom: 0.5rem;
+}
+
+.soundbath-info-freq {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+}
+
+.soundbath-freq-label,
+.soundbath-freq-sep,
+.soundbath-beat-label {
+  color: var(--color-text-dim, #888);
+}
+
+.soundbath-freq-value {
+  color: var(--color-gold, #c9a84c);
+  font-weight: 600;
+}
+
+.soundbath-beat-value {
+  color: var(--color-accent, #7eb8da);
+  font-weight: 600;
+}
+
+/* Controls */
+.soundbath-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.soundbath-base-control label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-text-dim, #888);
+  margin-bottom: 0.4rem;
+  text-align: center;
+}
+
+.soundbath-base-btns {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.base-btn {
+  background: var(--color-bg-2, #1a1a2e);
+  border: 1px solid var(--color-border, #333);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  color: var(--color-text-dim, #888);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.base-btn.active {
+  background: var(--color-gold-dim, rgba(201, 168, 76, 0.15));
+  border-color: var(--color-gold, #c9a84c);
+  color: var(--color-gold, #c9a84c);
+}
+
+/* Volume control */
+.soundbath .audio-volume-control {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.soundbath .audio-volume-control label {
+  font-size: 0.8rem;
+  color: var(--color-text-dim, #888);
+  min-width: 3rem;
+}
+
+.soundbath .audio-volume-control input[type="range"] {
+  flex: 1;
+  height: 4px;
+}
+
+/* Visual */
+.soundbath-visual {
+  padding: 0.5rem;
+}
+
+.beat-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.beat-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--color-border, #333);
+}
+
+.beat-ring:nth-child(1) {
+  width: 100%;
+  height: 100%;
+}
+
+.beat-ring:nth-child(2) {
+  width: 75%;
+  height: 75%;
+}
+
+.beat-ring:nth-child(3) {
+  width: 50%;
+  height: 50%;
+}
+
+.beat-hz {
+  font-size: 0.85rem;
+  color: var(--color-text-dim, #888);
+  margin-top: 0.4rem;
+}
+
+/* Active visual */
+.beat-indicator.active {
+  animation: beat-pulse 2s ease-in-out infinite;
+}
+
+.beat-indicator.active[data-wave="delta"] { --beat-color: #6a5acd; }
+.beat-indicator.active[data-wave="theta"] { --beat-color: #7b68ee; }
+.beat-indicator.active[data-wave="alpha"] { --beat-color: #c9a84c; }
+.beat-indicator.active[data-wave="beta"]  { --beat-color: #7eb8da; }
+.beat-indicator.active[data-wave="gamma"] { --beat-color: #e05050; }
+
+.beat-indicator.active .beat-ring {
+  border-color: var(--beat-color, var(--color-gold, #c9a84c));
+}
+
+.beat-ring.r1 { animation: ring-expand 2s ease-out infinite; }
+.beat-ring.r2 { animation: ring-expand 2s ease-out 0.4s infinite; }
+.beat-ring.r3 { animation: ring-expand 2s ease-out 0.8s infinite; }
+
+@keyframes beat-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes ring-expand {
+  0% { transform: scale(0.5); opacity: 0.8; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+
+.beat-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--beat-color, var(--color-gold, #c9a84c));
+  z-index: 1;
+}
+
+.beat-indicator.active .beat-hz {
+  color: var(--beat-color, var(--color-gold, #c9a84c));
+}
+
+/* Start button */
+.soundbath-start-btn {
+  background: var(--color-gold, #c9a84c);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.soundbath-start-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+}
+
+/* Active state */
+.soundbath-active {
+  gap: 1.2rem;
+}
+
+.soundbath-active-visual {
+  padding: 1rem;
+}
+
+.soundbath-active-info {
+  text-align: center;
+  color: var(--color-text, #eee);
+  font-size: 0.85rem;
+}
+
+.soundbath-active-freq {
+  color: var(--color-text-dim, #888);
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+}
+
+.soundbath-active-waves {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.wave-change-btn {
+  background: var(--color-bg-2, #1a1a2e);
+  border: 1px solid var(--color-border, #333);
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.wave-change-btn.active {
+  background: var(--color-gold-dim, rgba(201, 168, 76, 0.15));
+  border-color: var(--color-gold, #c9a84c);
+  color: var(--color-gold, #c9a84c);
+}
+
+.soundbath-stop-btn {
+  background: transparent;
+  border: 1px solid var(--color-border, #333);
+  border-radius: 12px;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-dim, #888);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.soundbath-stop-btn:hover {
+  border-color: #e05050;
+  color: #e05050;
+}

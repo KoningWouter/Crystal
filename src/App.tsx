@@ -4,6 +4,7 @@ import { TreeOfLife } from './components/TreeOfLife'
 import { GuidedMeditation } from './components/GuidedMeditation'
 import { GematriaCalculator } from './components/GematriaCalculator'
 import { CombinationMeditation } from './components/CombinationMeditation'
+import { SoundBath } from './components/SoundBath'
 import './App.css'
 
 interface Letter {
@@ -20,6 +21,7 @@ function App() {
   const [showMeditation, setShowMeditation] = useState(false)
   const [showGematria, setShowGematria] = useState(false)
   const [showComboMeditation, setShowComboMeditation] = useState(false)
+  const [showSoundBath, setShowSoundBath] = useState(false)
   const [notes, setNotes] = useState<Record<string, string>>({})
   const [isSaving, setIsSaving] = useState(false)
 
@@ -49,6 +51,7 @@ function App() {
     setShowMeditation(false)
     setShowGematria(false)
     setShowComboMeditation(false)
+    setShowSoundBath(false)
     setSelected(l)
   }
 
@@ -56,6 +59,7 @@ function App() {
     setSelected(null)
     setShowGematria(false)
     setShowComboMeditation(false)
+    setShowSoundBath(false)
     setShowMeditation(true)
   }
 
@@ -63,6 +67,7 @@ function App() {
     setSelected(null)
     setShowMeditation(false)
     setShowComboMeditation(false)
+    setShowSoundBath(false)
     setShowGematria(true)
   }
 
@@ -70,7 +75,16 @@ function App() {
     setSelected(null)
     setShowMeditation(false)
     setShowGematria(false)
+    setShowSoundBath(false)
     setShowComboMeditation(true)
+  }
+
+  function handleShowSoundBath() {
+    setSelected(null)
+    setShowMeditation(false)
+    setShowGematria(false)
+    setShowComboMeditation(false)
+    setShowSoundBath(true)
   }
 
   return (
@@ -100,6 +114,13 @@ function App() {
             <span className="combo-icon">◈</span>
             <span className="combo-name">Combinatie Meditatie</span>
           </li>
+          <li
+            className={`soundbath-link ${showSoundBath ? 'active' : ''}`}
+            onClick={handleShowSoundBath}
+          >
+            <span className="soundbath-icon">🎧</span>
+            <span className="soundbath-name">Geluidsbad</span>
+          </li>
           {hebrewLetters.map((l: Letter) => (
             <li
               key={l.id}
@@ -125,6 +146,10 @@ function App() {
         ) : showMeditation ? (
           <div className="detail-inner">
             <GuidedMeditation />
+          </div>
+        ) : showSoundBath ? (
+          <div className="detail-inner">
+            <SoundBath />
           </div>
         ) : selected ? (
           <div className="detail-inner">
