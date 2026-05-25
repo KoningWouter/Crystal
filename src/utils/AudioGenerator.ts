@@ -255,12 +255,14 @@ export class AudioGenerator {
 
   stopAll(): void {
     if (!this.audioContext || !this.masterGain) return;
-    // Fade out masterGain once for all oscillators
-    this.masterGain.gain.setValueAtTime(this.config.volume, this.audioContext.currentTime);
-    this.masterGain.gain.linearRampToValueAtTime(0, this.audioContext.currentTime + 0.2);
-    // Stop all oscillators immediately (they'll finish their fade via masterGain)
+    const ctx = this.audioContext;
+    // Immediately cancel any in-progress ramp and reset to full volume
+    // (old approach with linearRampToValueAtTime(0) would mute new oscillators added in the same tick)
+    this.masterGain.gain.cancelScheduledValues(ctx.currentTime);
+    this.masterGain.gain.setValueAtTime(this.config.volume, ctx.currentTime);
+    // Stop all oscillators immediately
     this.oscillators.forEach((osc) => {
-      try { osc.stop(this.audioContext!.currentTime + 0.3); } catch (_) {}
+      try { osc.stop(ctx.currentTime + 0.02); } catch (_) {}
     });
     this.oscillators.clear();
   }
