@@ -2,12 +2,10 @@
 
 .combo-meditation {
   padding: 32px 0;
-  max-width: 500px;
-  margin: 0 auto;
 }
 
 .combo-meditation-start {
-  text-align: center;
+  text-align: left;
 }
 
 .combo-meditation-start h3 {
@@ -44,7 +42,6 @@
   border-radius: 12px;
   padding: 20px 24px;
   font-size: 2rem;
-  text-align: center;
   color: #c9a227;
   font-family: inherit;
   direction: rtl;
@@ -115,7 +112,6 @@
 .combo-meditation-letters {
   font-size: 2rem;
   color: #c9a227;
-  text-align: center;
   direction: rtl;
   margin-bottom: 32px;
   padding: 16px;
@@ -125,7 +121,7 @@
 }
 
 .combo-meditation-step {
-  text-align: center;
+  text-align: left;
   margin-bottom: 32px;
 }
 
