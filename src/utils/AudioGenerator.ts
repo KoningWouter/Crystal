@@ -33,6 +33,7 @@ export class AudioGenerator {
   private audioContext: AudioContext | null = null;
   private masterGain: GainNode | null = null;
   private oscillators: Map<string, OscillatorNode> = new Map();
+  private gains: Map<string, GainNode> = new Map();
   private config: Required<AudioConfig>;
 
   constructor(config: AudioConfig = {}) {
@@ -56,6 +57,7 @@ export class AudioGenerator {
     if (this.audioContext.state === 'suspended') {
       this.oscillators.forEach((osc) => { try { osc.stop(); } catch (_) {} });
       this.oscillators.clear();
+      this.gains.clear();
       this.audioContext.close().catch(() => {});
       this.audioContext = new AudioContext();
       this.masterGain = this.audioContext.createGain();
@@ -67,6 +69,7 @@ export class AudioGenerator {
       this.masterGain.connect(this.audioContext.destination);
       this.masterGain.gain.setValueAtTime(this.config.volume, this.audioContext.currentTime);
       this.oscillators.clear();
+      this.gains.clear();
     }
     return this.audioContext;
   }
@@ -104,7 +107,7 @@ export class AudioGenerator {
     return this.gematriaToFrequency(gematria);
   }
 
-/** Start a tone that hangs (for meditation) */
+  /** Start a tone that hangs (for meditation) */
   startTone(id: string, frequency: number, duration?: number): void {
     const ctx = this.init()
     if (this.oscillators.has(id)) return
@@ -126,6 +129,7 @@ export class AudioGenerator {
     gain.connect(this.masterGain!)
     osc.start()
     this.oscillators.set(id, osc)
+    this.gains.set(id, gain)
 
     if (duration) {
       const fadeStart = duration - 1.0
@@ -176,6 +180,7 @@ export class AudioGenerator {
       gain.connect(this.masterGain!)
       osc.start()
       this.oscillators.set(oscId, osc)
+      this.gains.set(oscId, gain)
     })
 
     setTimeout(() => this.stopChord(id), duration * 1000)
@@ -203,6 +208,7 @@ export class AudioGenerator {
     gain.connect(this.masterGain!)
     osc.start()
     this.oscillators.set(id, osc)
+    this.gains.set(id, gain)
 
     setTimeout(() => this.stopTone(id), duration * 1000 + 200)
   }
@@ -246,13 +252,24 @@ export class AudioGenerator {
 
   stopTone(id: string): void {
     const osc = this.oscillators.get(id);
-    if (!osc || !this.audioContext || !this.masterGain) return;
+    const gain = this.gains.get(id);
+    if (!osc || !this.audioContext) return;
     const ctx = this.audioContext;
-    // Fade out first (200ms) to prevent click
-    this.masterGain.gain.setValueAtTime(this.config.volume, ctx.currentTime);
-    this.masterGain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.2);
-    osc.stop(ctx.currentTime + 0.25);
+
+    if (gain) {
+      const now = ctx.currentTime;
+      gain.gain.cancelScheduledValues(now);
+      gain.gain.setValueAtTime(gain.gain.value, now);
+      gain.gain.linearRampToValueAtTime(0, now + 0.25);
+      setTimeout(() => {
+        try { osc.stop(now + 0.3); } catch (_) {}
+      }, 280);
+    } else {
+      try { osc.stop(ctx.currentTime + 0.02); } catch (_) {}
+    }
+
     this.oscillators.delete(id);
+    this.gains.delete(id);
   }
 
   stopAll(): void {
@@ -267,6 +284,7 @@ export class AudioGenerator {
       try { osc.stop(ctx.currentTime + 0.02); } catch (_) {}
     });
     this.oscillators.clear();
+    this.gains.clear();
   }
 
   setVolume(vol: number): void {
@@ -292,6 +310,7 @@ export class AudioGenerator {
       this.audioContext = null;
     }
     this.masterGain = null;
+    this.gains.clear();
   }
 }
 
