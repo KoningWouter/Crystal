@@ -23,8 +23,7 @@
   margin: 0.3rem 0 0;
 }
 
-.soundbath-start,
-.soundbath-active {
+.soundbath-start {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -184,33 +183,50 @@
   position: relative;
   width: 120px;
   height: 120px;
+  pointer-events: none;
+}
+
+.beat-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--beat-color, var(--color-gold, #c9a84c));
+  z-index: 1;
+  pointer-events: none;
 }
 
 .beat-ring {
   position: absolute;
   border-radius: 50%;
   border: 1px solid var(--color-border, #333);
+  pointer-events: none;
 }
 
 .beat-ring:nth-child(1) {
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
 }
 
 .beat-ring:nth-child(2) {
   width: 75%;
   height: 75%;
+  top: 12.5%;
+  left: 12.5%;
 }
 
 .beat-ring:nth-child(3) {
   width: 50%;
   height: 50%;
+  top: 25%;
+  left: 25%;
 }
 
 .beat-hz {
   font-size: 0.85rem;
   color: var(--color-text-dim, #888);
   margin-top: 0.4rem;
+  pointer-events: none;
 }
 
 /* Active visual */
@@ -273,7 +289,11 @@
 
 /* Active state */
 .soundbath-active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 1.2rem;
+  width: 100%;
 }
 
 .soundbath-active-visual {
