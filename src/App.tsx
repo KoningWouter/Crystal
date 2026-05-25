@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import hebrewLetters from './data/hebrew_letters.json'
 import { TreeOfLife } from './components/TreeOfLife'
+import { GuidedMeditation } from './components/GuidedMeditation'
+import { GematriaCalculator } from './components/GematriaCalculator'
+import { CombinationMeditation } from './components/CombinationMeditation'
 import './App.css'
 
 interface Letter {
@@ -14,6 +17,9 @@ interface Letter {
 
 function App() {
   const [selected, setSelected] = useState<Letter | null>(null)
+  const [showMeditation, setShowMeditation] = useState(false)
+  const [showGematria, setShowGematria] = useState(false)
+  const [showComboMeditation, setShowComboMeditation] = useState(false)
   const [notes, setNotes] = useState<Record<string, string>>({})
   const [isSaving, setIsSaving] = useState(false)
 
@@ -39,17 +45,66 @@ function App() {
       .catch(() => setIsSaving(false))
   }
 
+  function handleSelectLetter(l: Letter) {
+    setShowMeditation(false)
+    setShowGematria(false)
+    setShowComboMeditation(false)
+    setSelected(l)
+  }
+
+  function handleShowMeditation() {
+    setSelected(null)
+    setShowGematria(false)
+    setShowComboMeditation(false)
+    setShowMeditation(true)
+  }
+
+  function handleShowGematria() {
+    setSelected(null)
+    setShowMeditation(false)
+    setShowComboMeditation(false)
+    setShowGematria(true)
+  }
+
+  function handleShowComboMeditation() {
+    setSelected(null)
+    setShowMeditation(false)
+    setShowGematria(false)
+    setShowComboMeditation(true)
+  }
+
   return (
     <div className="app">
       <aside className="sidebar">
         <h1 className="title">⚿ Crystal</h1>
         <p className="subtitle">22 Hebreeuwse Tekens</p>
         <ul className="letter-list">
+          <li
+            className={`meditation-link ${showMeditation ? 'active' : ''}`}
+            onClick={handleShowMeditation}
+          >
+            <span className="meditation-icon">☽</span>
+            <span className="meditation-name">Geleide Meditatie</span>
+          </li>
+          <li
+            className={`gematria-link ${showGematria ? 'active' : ''}`}
+            onClick={handleShowGematria}
+          >
+            <span className="gematria-icon">ג</span>
+            <span className="gematria-name">Gematria</span>
+          </li>
+          <li
+            className={`combo-link ${showComboMeditation ? 'active' : ''}`}
+            onClick={handleShowComboMeditation}
+          >
+            <span className="combo-icon">◈</span>
+            <span className="combo-name">Combinatie Meditatie</span>
+          </li>
           {hebrewLetters.map((l: Letter) => (
             <li
               key={l.id}
               className={`letter-item ${l.meditation ? 'has-meditation' : ''} ${selected?.id === l.id ? 'active' : ''}`}
-              onClick={() => setSelected(l)}
+              onClick={() => handleSelectLetter(l)}
             >
               <span className="letter-symbol">{l.symbol}</span>
               <span className="letter-name">{l.letter}</span>
@@ -59,7 +114,19 @@ function App() {
       </aside>
 
       <main className="detail">
-        {selected ? (
+        {showGematria ? (
+          <div className="detail-inner">
+            <GematriaCalculator />
+          </div>
+        ) : showComboMeditation ? (
+          <div className="detail-inner">
+            <CombinationMeditation />
+          </div>
+        ) : showMeditation ? (
+          <div className="detail-inner">
+            <GuidedMeditation />
+          </div>
+        ) : selected ? (
           <div className="detail-inner">
             <div className="detail-symbol">{selected.symbol}</div>
             <h2 className="detail-name">{selected.letter}</h2>
@@ -89,7 +156,7 @@ function App() {
               selectedLetter={selected.letter}
               onPathClick={(letter) => {
                 const found = hebrewLetters.find((l: Letter) => l.letter === letter)
-                if (found) setSelected(found)
+                if (found) handleSelectLetter(found)
               }}
             />
           </div>

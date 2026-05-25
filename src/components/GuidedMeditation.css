@@ -1,0 +1,218 @@
+/* === Guided Meditation === */
+
+.meditation-start {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.meditation-start h3 {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #e8e4d9;
+  margin-bottom: 8px;
+  letter-spacing: 0.1em;
+}
+
+.meditation-start-sub {
+  font-size: 0.85rem;
+  color: #6b6b7a;
+  margin-bottom: 28px;
+  letter-spacing: 0.05em;
+}
+
+.meditation-start-btn {
+  background: transparent;
+  border: 1px solid #c9a227;
+  color: #c9a227;
+  padding: 12px 40px;
+  border-radius: 100px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  letter-spacing: 0.1em;
+}
+
+.meditation-start-btn:hover {
+  background: #c9a227;
+  color: #0a0a0f;
+}
+
+/* === Active Meditation === */
+
+.meditation-active {
+  padding: 32px 0;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.meditation-progress {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.meditation-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2a2a35;
+  transition: background 0.3s;
+}
+
+.meditation-dot.active {
+  background: #c9a227;
+}
+
+.meditation-dot.done {
+  background: #5a5a6a;
+}
+
+.meditation-symbol {
+  font-size: 5rem;
+  color: #c9a227;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  margin-bottom: 16px;
+}
+
+.meditation-symbol.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.meditation-title {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #b8b4a8;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+}
+
+.meditation-title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.meditation-breath {
+  text-align: center;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #5a5a6a;
+  margin-bottom: 28px;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.2s;
+}
+
+.meditation-breath.visible {
+  opacity: 1;
+}
+
+.meditation-text {
+  flex: 1;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+  margin-bottom: 32px;
+}
+
+.meditation-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.meditation-text p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #a8a498;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.meditation-text p:last-child {
+  margin-bottom: 0;
+}
+
+.meditation-nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.4s;
+}
+
+.meditation-nav.visible {
+  opacity: 1;
+}
+
+.meditation-btn {
+  background: transparent;
+  border: 1px solid #2a2a35;
+  color: #6b6b7a;
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  letter-spacing: 0.05em;
+}
+
+.meditation-btn:hover {
+  border-color: #c9a227;
+  color: #c9a227;
+}
+
+/* === Audio Controls === */
+
+.audio-volume-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px 0 24px 0;
+}
+
+.audio-volume-control label {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  min-width: 50px;
+}
+
+.audio-volume-control input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 120px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+}
+
+.audio-volume-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+.meditation-btn.next {
+  border-color: #c9a227;
+  color: #c9a227;
+}
+
+.meditation-btn.next:hover {
+  background: #c9a227;
+  color: #0a0a0f;
+}

@@ -1,0 +1,352 @@
+/* === Gematria Calculator === */
+
+.gematria {
+  padding: 32px 0;
+}
+
+.gematria-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.gematria-header h3 {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: #e8e4d9;
+  letter-spacing: 0.2em;
+  margin-bottom: 4px;
+}
+
+.gematria-sub {
+  font-size: 0.8rem;
+  color: #6b6b7a;
+  letter-spacing: 0.05em;
+}
+
+.gematria-input-wrap {
+  margin-bottom: 24px;
+}
+
+.gematria-input {
+  width: 100%;
+  background: #111118;
+  border: 1px solid #2a2a35;
+  border-radius: 12px;
+  padding: 20px 24px;
+  font-size: 2rem;
+  text-align: center;
+  color: #c9a227;
+  font-family: inherit;
+  direction: rtl;
+  transition: border-color 0.2s;
+}
+
+.gematria-input:focus {
+  outline: none;
+  border-color: #c9a227;
+}
+
+.gematria-input::placeholder {
+  color: #3a3a45;
+}
+
+.gematria-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.gematria-value {
+  font-size: 2rem;
+  color: #c9a227;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+.gematria-666 {
+  font-size: 1rem;
+  color: #8b4040;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 12px;
+  background: #1a1010;
+  border-radius: 100px;
+  border: 1px solid #3a2020;
+}
+
+.gematria-special {
+  font-size: 0.9rem;
+  color: #6b6b7a;
+  font-style: italic;
+}
+
+/* === Known Values === */
+
+.gematria-known {
+  margin-bottom: 24px;
+}
+
+.gematria-known-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #5a5a6a;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.gematria-known-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.gematria-known-item {
+  background: #111118;
+  border: 1px solid #2a2a35;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.gematria-known-item:hover {
+  border-color: #c9a227;
+  background: #1a1a24;
+}
+
+.gematria-known-letters {
+  font-size: 1.2rem;
+  color: #c9a227;
+  direction: rtl;
+}
+
+.gematria-known-value {
+  font-size: 0.7rem;
+  color: #6b6b7a;
+}
+
+/* === 666 Button === */
+
+.gematria-666-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #3a2020;
+  color: #8b6060;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  letter-spacing: 0.05em;
+}
+
+.gematria-666-btn:hover {
+  border-color: #8b4040;
+  color: #c9a227;
+  background: #111118;
+}
+
+/* === 666 Results === */
+
+.gematria-666-results {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #2a2a35;
+}
+
+.gematria-666-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #8b4040;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.gematria-666-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.gematria-666-item {
+  background: #1a1010;
+  border: 1px solid #3a2020;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-family: inherit;
+}
+
+.gematria-666-item:hover {
+  border-color: #8b4040;
+}
+
+.gematria-666-item::first-letter {
+  direction: rtl;
+}
+
+.gematria-666-item span {
+  font-size: 1rem;
+  color: #c9a227;
+  direction: rtl;
+}
+
+.gematria-666-more {
+  font-size: 0.75rem;
+  color: #5a5a6a;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.gematria-666-empty {
+  font-size: 0.85rem;
+  color: #5a5a6a;
+  text-align: center;
+  margin-top: 16px;
+  font-style: italic;
+}
+
+/* === Search Section === */
+
+.gematria-search {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #2a2a35;
+}
+
+.gematria-search-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #5a5a6a;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.gematria-search-row {
+  display: flex;
+  gap: 8px;
+}
+
+.gematria-search-input {
+  flex: 1;
+  background: #111118;
+  border: 1px solid #2a2a35;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  color: #c9a227;
+  text-align: center;
+  font-family: inherit;
+}
+
+.gematria-search-input:focus {
+  outline: none;
+  border-color: #c9a227;
+}
+
+.gematria-search-input::placeholder {
+  color: #3a3a45;
+}
+
+/* Remove number input arrows */
+.gematria-search-input::-webkit-outer-spin-button,
+.gematria-search-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.gematria-search-btn {
+  background: #1a1a24;
+  border: 1px solid #2a2a35;
+  color: #c9a227;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  font-family: inherit;
+}
+
+.gematria-search-btn:hover:not(:disabled) {
+  border-color: #c9a227;
+  background: #1e1e2a;
+}
+
+.gematria-search-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* === Results Section === */
+
+.gematria-results {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #2a2a35;
+}
+
+.gematria-searching {
+  font-size: 0.85rem;
+  color: #6b6b7a;
+  text-align: center;
+}
+
+.gematria-results-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #c9a227;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.gematria-results-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.gematria-result-item {
+  background: #1e1e2a;
+  border: 1px solid #3a3a45;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-family: inherit;
+  color: #e8e4d9;
+  font-size: 0.9rem;
+}
+
+.gematria-result-item:hover {
+  border-color: #c9a227;
+}
+
+.gematria-no-results {
+  font-size: 0.85rem;
+  color: #5a5a6a;
+  text-align: center;
+  margin-top: 16px;
+  font-style: italic;
+}

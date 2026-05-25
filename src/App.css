@@ -163,6 +163,132 @@ html {
   gap: 4px;
 }
 
+.meditation-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  border: 1px solid transparent;
+  margin-bottom: 8px;
+}
+
+.meditation-link:hover {
+  background: #1a1a24;
+}
+
+.meditation-link.active {
+  background: #1e1e2a;
+  border-color: #c9a227;
+}
+
+.meditation-icon {
+  font-size: 1.4rem;
+  color: #8b7355;
+  width: 32px;
+  text-align: center;
+}
+
+.meditation-link.active .meditation-icon {
+  color: #c9a227;
+}
+
+.meditation-name {
+  font-size: 0.85rem;
+  color: #8b7355;
+  letter-spacing: 0.05em;
+}
+
+.meditation-link.active .meditation-name {
+  color: #e8e4d9;
+}
+
+.gematria-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  border: 1px solid transparent;
+  margin-bottom: 8px;
+}
+
+.gematria-link:hover {
+  background: #1a1a24;
+}
+
+.gematria-link.active {
+  background: #1e1e2a;
+  border-color: #c9a227;
+}
+
+.gematria-icon {
+  font-size: 1.2rem;
+  color: #6b8b7a;
+  width: 32px;
+  text-align: center;
+}
+
+.gematria-link.active .gematria-icon {
+  color: #c9a227;
+}
+
+.gematria-name {
+  font-size: 0.85rem;
+  color: #6b8b7a;
+  letter-spacing: 0.05em;
+}
+
+.gematria-link.active .gematria-name {
+  color: #e8e4d9;
+}
+
+.combo-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  border: 1px solid transparent;
+  margin-bottom: 8px;
+}
+
+.combo-link:hover {
+  background: #1a1a24;
+}
+
+.combo-link.active {
+  background: #1e1e2a;
+  border-color: #c9a227;
+}
+
+.combo-icon {
+  font-size: 1.2rem;
+  color: #8b7a6b;
+  width: 32px;
+  text-align: center;
+}
+
+.combo-link.active .combo-icon {
+  color: #c9a227;
+}
+
+.combo-name {
+  font-size: 0.85rem;
+  color: #8b7a6b;
+  letter-spacing: 0.05em;
+}
+
+.combo-link.active .combo-name {
+  color: #e8e4d9;
+}
+
 .letter-item {
   display: flex;
   align-items: center;

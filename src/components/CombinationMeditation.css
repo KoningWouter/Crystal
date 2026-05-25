@@ -1,0 +1,221 @@
+/* === Combination Meditation === */
+
+.combo-meditation {
+  padding: 32px 0;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.combo-meditation-start {
+  text-align: center;
+}
+
+.combo-meditation-start h3 {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #e8e4d9;
+  margin-bottom: 8px;
+  letter-spacing: 0.1em;
+}
+
+.combo-meditation-desc {
+  font-size: 0.9rem;
+  color: #6b6b7a;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.combo-meditation-input-wrap {
+  margin-bottom: 24px;
+}
+
+.combo-meditation-input-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #5a5a6a;
+  margin-bottom: 12px;
+}
+
+.combo-meditation-input {
+  width: 100%;
+  background: #111118;
+  border: 1px solid #2a2a35;
+  border-radius: 12px;
+  padding: 20px 24px;
+  font-size: 2rem;
+  text-align: center;
+  color: #c9a227;
+  font-family: inherit;
+  direction: rtl;
+  transition: border-color 0.2s;
+}
+
+.combo-meditation-input:focus {
+  outline: none;
+  border-color: #c9a227;
+}
+
+.combo-meditation-input::placeholder {
+  color: #3a3a45;
+}
+
+.combo-meditation-start-btn {
+  background: transparent;
+  border: 1px solid #3a3a45;
+  color: #e8e4d9;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  font-family: inherit;
+  letter-spacing: 0.05em;
+}
+
+.combo-meditation-start-btn:hover:not(:disabled) {
+  border-color: #c9a227;
+  background: #1e1e2a;
+}
+
+.combo-meditation-start-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* === During Meditation === */
+
+.combo-meditation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.combo-meditation-reset {
+  background: none;
+  border: none;
+  color: #6b6b7a;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-family: inherit;
+}
+
+.combo-meditation-reset:hover {
+  color: #e8e4d9;
+}
+
+.combo-meditation-progress {
+  font-size: 0.75rem;
+  color: #5a5a6a;
+  letter-spacing: 0.1em;
+}
+
+.combo-meditation-letters {
+  font-size: 2rem;
+  color: #c9a227;
+  text-align: center;
+  direction: rtl;
+  margin-bottom: 32px;
+  padding: 16px;
+  background: #111118;
+  border-radius: 12px;
+  border: 1px solid #2a2a35;
+}
+
+.combo-meditation-step {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.combo-meditation-step-title {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #c9a227;
+  margin-bottom: 12px;
+}
+
+.combo-meditation-step-text {
+  font-size: 1rem;
+  color: #e8e4d9;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.combo-meditation-breath {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #1e1e2a;
+  border-radius: 100px;
+  border: 1px solid #2a2a35;
+}
+
+.combo-meditation-breath-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #5a5a6a;
+}
+
+.combo-meditation-breath-value {
+  font-size: 0.85rem;
+  color: #c9a227;
+  letter-spacing: 0.1em;
+}
+
+.combo-meditation-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.combo-meditation-prev,
+.combo-meditation-next {
+  flex: 1;
+  background: #1e1e2a;
+  border: 1px solid #2a2a35;
+  color: #e8e4d9;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  font-family: inherit;
+}
+
+.combo-meditation-prev:hover:not(:disabled),
+.combo-meditation-next:hover {
+  border-color: #c9a227;
+}
+
+.combo-meditation-prev:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.combo-meditation-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.combo-meditation-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2a2a35;
+  transition: background 0.2s;
+}
+
+.combo-meditation-dot.active {
+  background: #c9a227;
+}
+
+.combo-meditation-dot.done {
+  background: #5a5a6a;
+}
