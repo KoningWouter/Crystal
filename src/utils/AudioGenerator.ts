@@ -49,11 +49,24 @@ export class AudioGenerator {
     if (!this.audioContext) {
       this.audioContext = new AudioContext();
       this.masterGain = this.audioContext.createGain();
-      this.masterGain.gain.setValueAtTime(this.config.volume, this.audioContext.currentTime);
       this.masterGain.connect(this.audioContext.destination);
+      this.masterGain.gain.setValueAtTime(this.config.volume, this.audioContext.currentTime);
     }
+    // If context was suspended (tab switch), recreate nodes to avoid stale oscillator refs
     if (this.audioContext.state === 'suspended') {
-      this.audioContext.resume();
+      this.oscillators.forEach((osc) => { try { osc.stop(); } catch (_) {} });
+      this.oscillators.clear();
+      this.audioContext.close().catch(() => {});
+      this.audioContext = new AudioContext();
+      this.masterGain = this.audioContext.createGain();
+      this.masterGain.connect(this.audioContext.destination);
+      this.masterGain.gain.setValueAtTime(this.config.volume, this.audioContext.currentTime);
+    } else if (this.audioContext.state === 'closed') {
+      this.audioContext = new AudioContext();
+      this.masterGain = this.audioContext.createGain();
+      this.masterGain.connect(this.audioContext.destination);
+      this.masterGain.gain.setValueAtTime(this.config.volume, this.audioContext.currentTime);
+      this.oscillators.clear();
     }
     return this.audioContext;
   }
