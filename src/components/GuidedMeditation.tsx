@@ -110,11 +110,7 @@ export function GuidedMeditation() {
     }
   }, [active, step])
 
-  useEffect(() => {
-    if (active && step >= 0) {
-      playStepAudio(daatMeditation[step].breath)
-    }
-  }, [step])
+  // Removed duplicate [step] useEffect — playStepAudio is already called in [active, step]
 
   function next() {
     if (step < daatMeditation.length - 1) {
