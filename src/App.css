@@ -186,23 +186,23 @@ html {
 
 .meditation-icon {
   font-size: 1.4rem;
-  color: #8b7355;
+  color: #9b8b6b;
   width: 32px;
   text-align: center;
 }
 
 .meditation-link.active .meditation-icon {
-  color: #c9a227;
+  color: #c9b87a;
 }
 
 .meditation-name {
   font-size: 0.85rem;
-  color: #8b7355;
+  color: #9b8b6b;
   letter-spacing: 0.05em;
 }
 
 .meditation-link.active .meditation-name {
-  color: #e8e4d9;
+  color: #e8dcc8;
 }
 
 .gematria-link {
@@ -228,23 +228,23 @@ html {
 
 .gematria-icon {
   font-size: 1.2rem;
-  color: #6b8b7a;
+  color: #7a8b6b;
   width: 32px;
   text-align: center;
 }
 
 .gematria-link.active .gematria-icon {
-  color: #c9a227;
+  color: #9bbb7a;
 }
 
 .gematria-name {
   font-size: 0.85rem;
-  color: #6b8b7a;
+  color: #7a8b6b;
   letter-spacing: 0.05em;
 }
 
 .gematria-link.active .gematria-name {
-  color: #e8e4d9;
+  color: #d8e8c8;
 }
 
 .combo-link {
@@ -270,23 +270,23 @@ html {
 
 .combo-icon {
   font-size: 1.2rem;
-  color: #8b7a6b;
+  color: #8b6b9b;
   width: 32px;
   text-align: center;
 }
 
 .combo-link.active .combo-icon {
-  color: #c9a227;
+  color: #9b8bbb;
 }
 
 .combo-name {
   font-size: 0.85rem;
-  color: #8b7a6b;
+  color: #8b6b9b;
   letter-spacing: 0.05em;
 }
 
 .combo-link.active .combo-name {
-  color: #c9a227;
+  color: #c8b8d8;
 }
 
 /* Geluidsbad sidebar link */
@@ -313,24 +313,24 @@ html {
 
 .soundbath-icon {
   font-size: 1.2rem;
-  color: #8b7355;
+  color: #5b9b8b;
   width: 32px;
   text-align: center;
   font-style: normal;
 }
 
 .soundbath-link.active .soundbath-icon {
-  color: #c9a227;
+  color: #7bc8b8;
 }
 
 .soundbath-name {
   font-size: 0.85rem;
-  color: #8b7355;
+  color: #5b9b8b;
   letter-spacing: 0.05em;
 }
 
 .soundbath-link.active .soundbath-name {
-  color: #c9a227;
+  color: #b8e8e0;
 }
 
 .letter-item {

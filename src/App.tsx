@@ -119,7 +119,7 @@ function App() {
             onClick={handleShowSoundBath}
           >
             <span className="soundbath-icon">♫</span>
-            <span className="soundbath-name">Geluidsbad</span>
+            <span className="soundbath-name">Geluidsblad</span>
           </li>
           {hebrewLetters.map((l: Letter) => (
             <li
