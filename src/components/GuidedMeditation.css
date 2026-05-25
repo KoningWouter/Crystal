@@ -2,7 +2,7 @@
 
 .meditation-start {
   padding: 40px 0;
-  text-align: center;
+  text-align: left;
 }
 
 .meditation-start h3 {
@@ -73,7 +73,6 @@
 .meditation-symbol {
   font-size: 5rem;
   color: #c9a227;
-  text-align: center;
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -86,7 +85,7 @@
 }
 
 .meditation-title {
-  text-align: center;
+  text-align: left;
   font-size: 1.1rem;
   font-weight: 300;
   color: #b8b4a8;
@@ -103,7 +102,7 @@
 }
 
 .meditation-breath {
-  text-align: center;
+  text-align: left;
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -135,7 +134,6 @@
   line-height: 1.8;
   color: #a8a498;
   margin-bottom: 16px;
-  text-align: center;
 }
 
 .meditation-text p:last-child {
@@ -176,7 +174,6 @@
 .audio-volume-control {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 12px;
   margin: 16px 0 24px 0;
 }

@@ -1,14 +1,14 @@
 .soundbath {
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 1rem;
   gap: 1.2rem;
   min-height: 100%;
+  width: 100%;
 }
 
 .soundbath-header {
-  text-align: center;
+  text-align: left;
 }
 
 .soundbath-header h3 {
@@ -26,7 +26,6 @@
 .soundbath-start {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 1rem;
   width: 100%;
 }
@@ -75,9 +74,7 @@
   border: 1px solid var(--color-border, #333);
   border-radius: 12px;
   padding: 0.8rem 1.2rem;
-  text-align: center;
   width: 100%;
-  max-width: 400px;
 }
 
 .soundbath-info-desc {
@@ -116,7 +113,6 @@
   flex-direction: column;
   gap: 0.8rem;
   width: 100%;
-  max-width: 400px;
 }
 
 .soundbath-base-control label {
@@ -124,12 +120,10 @@
   font-size: 0.75rem;
   color: var(--color-text-dim, #888);
   margin-bottom: 0.4rem;
-  text-align: center;
 }
 
 .soundbath-base-btns {
   display: flex;
-  justify-content: center;
   gap: 0.4rem;
 }
 
@@ -156,7 +150,6 @@
   align-items: center;
   gap: 0.6rem;
   width: 100%;
-  max-width: 300px;
 }
 
 .soundbath .audio-volume-control label {
@@ -173,6 +166,8 @@
 /* Visual */
 .soundbath-visual {
   padding: 0.5rem;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .beat-indicator {
@@ -280,6 +275,7 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
+  align-self: flex-start;
 }
 
 .soundbath-start-btn:hover {
@@ -291,17 +287,17 @@
 .soundbath-active {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 1.2rem;
   width: 100%;
 }
 
 .soundbath-active-visual {
   padding: 1rem;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .soundbath-active-info {
-  text-align: center;
   color: var(--color-text, #eee);
   font-size: 0.85rem;
 }

@@ -376,6 +376,7 @@ html {
 }
 
 .detail-inner {
+  width: 100%;
   max-width: 100%;
 }
 
