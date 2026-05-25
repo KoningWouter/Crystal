@@ -312,8 +312,8 @@ html {
 }
 
 .soundbath-icon {
-  font-size: 1.2rem;
-  color: #8b7a6b;
+  font-size: 1.4rem;
+  color: #8b7355;
   width: 32px;
   text-align: center;
 }
@@ -323,9 +323,9 @@ html {
 }
 
 .soundbath-name {
-  font-size: 0.9rem;
-  color: #aaa;
-  font-weight: 500;
+  font-size: 0.85rem;
+  color: #8b7355;
+  letter-spacing: 0.05em;
 }
 
 .soundbath-link.active .soundbath-name {
