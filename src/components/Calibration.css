@@ -20,6 +20,38 @@
   gap: 1.2rem;
 }
 
+.calibration-volume {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+  max-width: 200px;
+}
+
+.calibration-volume label {
+  font-size: 0.85rem;
+  color: var(--color-text-dim, #888);
+  min-width: 50px;
+}
+
+.calibration-volume input[type="range"] {
+  flex: 1;
+  height: 4px;
+  background: var(--color-border, #333);
+  border-radius: 2px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.calibration-volume input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
 .calibration-icon {
   font-size: 3rem;
   margin-bottom: 0.5rem;

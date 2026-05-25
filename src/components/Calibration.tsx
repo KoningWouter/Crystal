@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import './Calibration.css'
+import { getAudioGenerator } from '../utils/AudioGenerator'
 
 interface CalibrationProps {
   onComplete: () => void
@@ -21,11 +22,40 @@ export function Calibration({ onComplete, onCancel }: CalibrationProps) {
   const [state, setState] = useState<CalibrationState>('intro')
   const [stepIndex, setStepIndex] = useState(0)
   const [holdProgress, setHoldProgress] = useState(0)
+  const [volume, setVolume] = useState(0.3)
+  const audioGenRef = useRef<ReturnType<typeof getAudioGenerator> | null>(null)
   const holdInterval = useRef<number | null>(null)
 
   const currentStep = GUIDANCE_STEPS[stepIndex]
 
+  const initAudio = () => {
+    if (!audioGenRef.current) {
+      audioGenRef.current = getAudioGenerator({ volume })
+    }
+    audioGenRef.current.init()
+  }
+
+  const startBinaural = () => {
+    if (audioGenRef.current) {
+      audioGenRef.current.startBinaural(432, 10) // 432 base + 10hz alpha beat
+    }
+  }
+
+  const stopAudio = () => {
+    if (audioGenRef.current) {
+      audioGenRef.current.stopAll()
+    }
+  }
+
+  useEffect(() => {
+    if (audioGenRef.current) {
+      audioGenRef.current.setVolume(volume)
+    }
+  }, [volume])
+
   const startGuidance = () => {
+    initAudio()
+    startBinaural()
     setState('guidance')
     setStepIndex(0)
   }
@@ -58,6 +88,7 @@ export function Calibration({ onComplete, onCancel }: CalibrationProps) {
   useEffect(() => {
     return () => {
       if (holdInterval.current) clearInterval(holdInterval.current)
+      stopAudio()
     }
   }, [])
 
@@ -76,11 +107,22 @@ export function Calibration({ onComplete, onCancel }: CalibrationProps) {
               Dit duurt ongeveer 1 minuut. Je hoeft niets te forceren — 
               laat het geluid je naar het centrum leiden.
             </p>
+            <div className="calibration-volume">
+              <label>🔊 {Math.round(volume * 100)}%</label>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                value={volume}
+                onChange={(e) => setVolume(parseFloat(e.target.value))}
+              />
+            </div>
             <div className="calibration-actions">
               <button className="calibration-start-btn" onClick={startGuidance}>
                 Start Calibratie
               </button>
-              <button className="calibration-skip-btn" onClick={onCancel}>
+              <button className="calibration-skip-btn" onClick={() => { stopAudio(); onCancel() }}>
                 Overslaan
               </button>
             </div>
@@ -119,7 +161,7 @@ export function Calibration({ onComplete, onCancel }: CalibrationProps) {
               <button className="calibration-next-btn" onClick={nextStep}>
                 {stepIndex < GUIDANCE_STEPS.length - 1 ? 'Volgende →' : 'Klaar'}
               </button>
-              <button className="calibration-back-btn" onClick={onCancel}>
+              <button className="calibration-back-btn" onClick={() => { stopAudio(); onCancel() }}>
                 Annuleren
               </button>
             </div>
@@ -158,6 +200,7 @@ export function Calibration({ onComplete, onCancel }: CalibrationProps) {
 
             <button className="calibration-cancel-btn" onClick={() => {
               if (holdInterval.current) clearInterval(holdInterval.current)
+              stopAudio()
               onCancel()
             }}>
               Annuleren
@@ -180,7 +223,10 @@ export function Calibration({ onComplete, onCancel }: CalibrationProps) {
             </div>
 
             <div className="calibration-actions">
-              <button className="calibration-start-btn" onClick={onComplete}>
+              <button className="calibration-start-btn" onClick={() => {
+                stopAudio()
+                onComplete()
+              }}>
                 Start Meditatie
               </button>
             </div>
