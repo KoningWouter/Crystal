@@ -118,7 +118,7 @@ function App() {
             className={`soundbath-link ${showSoundBath ? 'active' : ''}`}
             onClick={handleShowSoundBath}
           >
-            <span className="soundbath-icon">🎧</span>
+            <span className="soundbath-icon">♫</span>
             <span className="soundbath-name">Geluidsbad</span>
           </li>
           {hebrewLetters.map((l: Letter) => (

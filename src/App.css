@@ -312,10 +312,11 @@ html {
 }
 
 .soundbath-icon {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #8b7355;
   width: 32px;
   text-align: center;
+  font-style: normal;
 }
 
 .soundbath-link.active .soundbath-icon {
