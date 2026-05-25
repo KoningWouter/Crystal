@@ -219,6 +219,8 @@ export class AudioGenerator {
 
   /** Binaural beat: links baseFreq, rechts baseFreq + beatHz */
   startBinaural(baseFreq: number, beatHz: number): void {
+    // Stop any existing oscillators first so they don't pile up
+    this.stopAll();
     const ctx = this.init();
 
     const makeChannel = (freq: number, pan: number) => {
