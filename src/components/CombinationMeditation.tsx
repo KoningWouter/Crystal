@@ -106,7 +106,7 @@ export function CombinationMeditation() {
 
   if (currentStep === -1) {
     return (
-      <div className="combo-meditation">
+      <div className="combo-meditation" style={{ textAlign: 'left' }}>
         <div className="combo-meditation-start">
           <h3>Meditatie op Combinatie</h3>
           <p className="combo-meditation-desc">
@@ -161,7 +161,7 @@ export function CombinationMeditation() {
   const isLast = currentStep === steps.length - 1
 
   return (
-    <div className="combo-meditation">
+    <div className="combo-meditation" style={{ textAlign: 'left' }}>
       <div className="combo-meditation-header">
         <button
           className="combo-meditation-reset"

@@ -2,9 +2,14 @@
 
 .combo-meditation {
   padding: 32px 0;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  max-width: none;
 }
 
 .combo-meditation-start {
+  width: 100%;
   text-align: left;
 }
 
