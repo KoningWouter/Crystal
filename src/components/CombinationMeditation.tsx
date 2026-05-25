@@ -20,26 +20,26 @@ const COMBO_FREQUENCIES: Record<string, number[]> = {
 const steps: MeditationStep[] = [
   {
     sefira: '1',
-    title: 'De Letters Apart',
-    text: 'Neem ieder teken apart. Wat is de vorm? De klank? Het gewicht? Zie ze niet als symbolen — zie ze als personen. Elk met eigen karakter.',
+    title: 'The Letters Apart',
+    text: 'Take each sign apart. What is the form? The sound? The weight? See them not as symbols — see them as persons. Each with its own character.',
     breath: '4-4-4',
   },
   {
     sefira: '2',
-    title: 'De Combinatie Als Geheel',
-    text: 'Wat gebeurt er als ze samenkomen? Welk beeld ontstaat? Is er harmonie of spanning? De letters zijn nu in gesprek — luister.',
+    title: 'The Combination As A Whole',
+    text: 'What happens when they come together? What image emerges? Is there harmony or tension? The letters are now in conversation — listen.',
     breath: '4-6-4',
   },
   {
     sefira: '3',
-    title: 'Het Getal en de Boom',
-    text: 'Het getal is de brug. Welke sephira hoort hierbij? Welke positie op de boom? Laat het getal een vorm krijgen — een plek in de structuur.',
+    title: 'The Number and the Tree',
+    text: 'The number is the bridge. Which sephira belongs here? Which position on the tree? Let the number take form — a place in the structure.',
     breath: '5-5-5',
   },
   {
     sefira: '4',
-    title: 'Stil Worden',
-    text: 'Na het denken: stilte. Houd de combinatie vast zonder te analyseren. Laat het bezinken. Er is niets meer te doen.',
+    title: 'Becoming Still',
+    text: 'After thinking: stillness. Hold the combination without analyzing. Let it settle. There is nothing more to do.',
     breath: '6-6-6',
   },
 ]
@@ -150,7 +150,7 @@ export function CombinationMeditation() {
             onClick={start}
             disabled={!inputLetters.trim()}
           >
-            Begin de meditatie
+            Begin the meditation
           </button>
         </div>
       </div>

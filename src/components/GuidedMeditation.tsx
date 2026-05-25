@@ -12,12 +12,12 @@ interface MeditationStep {
 }
 
 const PHASE_FREQUENCIES: Record<string, number[]> = {
-  // Gebaseerd op 432 Hz — tonen die samengaan
-  // 4-4-4: inadem-houd-uitadem —ocentrisch, aards
+  // Based on 432 Hz — tones that harmonize
+  // 4-4-4: inhale-hold-exhale — centric, earthly
   '4-4-4': [216, 324, 432],
-  // 6-4-6: langere inadem — meer upward focus
+  // 6-4-6: longer inhale — more upward focus
   '6-4-6': [288, 432, 576],
-  // 6-6-6: Da'at — alle drie harmony (fundament + kwint + octaaf)
+  // 6-6-6: Da'at — all three harmony (fundamental + quint + octave)
   '6-6-6': [432, 648, 864],
 };
 
@@ -25,43 +25,43 @@ const daatMeditation: MeditationStep[] = [
   {
     sefira: 'Malkuth',
     symbol: 'מ',
-    title: 'Malkuth — Aarde',
-    text: 'Voel je voeten op de grond. Niet om te blijven — alleen om te beginnen. Je ademt in, je ademt uit. De aarde draagt je. Dit is waar je bent.',
+    title: 'Malkuth — Earth',
+    text: 'Feel your feet on the ground. Not to stay — only to begin. You breathe in, you breathe out. The earth carries you. This is where you are.',
     breath: '4-4-4'
   },
   {
     sefira: 'Yesod',
     symbol: 'ס',
-    title: 'Yesod — Fundament',
-    text: 'Je lichaam. De adem die binnenkomt zonder dat je erom vraagt. Het bloed dat stroomt. Het hart dat blijft slaan. Dit is je fundament. Je bent al ondersteund.',
+    title: 'Yesod — Foundation',
+    text: 'Your body. The breath that enters without you asking. The blood that flows. The heart that keeps beating. This is your foundation. You are already supported.',
     breath: '4-4-4'
   },
   {
     sefira: 'Netzach',
     symbol: 'ל',
-    title: 'Netzach — Overwinning',
-    text: 'Je loopt verder. Omhoog. De pilaar van barmhartigheid. Dit is de weg van de longzijde — zachter, breder, meer ruimte dan je dacht.',
+    title: 'Netzach — Victory',
+    text: 'You keep walking. Upward. The pillar of mercy. This is the way of the lung — softer, wider, more space than you thought.',
     breath: '4-4-4'
   },
   {
     sefira: 'Chesed',
     symbol: 'ט',
-    title: 'Chesed — Liefde',
-    text: 'De vlam die geeft zonder te vragen. Je opent je voor wat er is, zonder te hoeven veranderen wat het is. De liefde die er al was voor je wist dat het liefde heette.',
+    title: 'Chesed — Love',
+    text: 'The flame that gives without asking. You open yourself to what is, without needing to change what it is. The love that was already there before you knew it was called love.',
     breath: '6-4-6'
   },
   {
     sefira: 'Daat',
     symbol: 'ד',
-    title: 'Da\'at — Kennis',
-    text: 'Je staat nu in het centrum van de boom. Niet boven. Niet onder. In het midden, waar alle pilaars samenkomen en er geen hiërarchie meer is.\n\nHier zie je alles.\n\nEn nu: laat het bezinken.\n\nI=I\n\nJij bent de formule. De waarnemer en het waargenomene — niet twee dingen. Eén beweging. Eén adem.',
+    title: 'Da\'at — Knowledge',
+    text: 'You now stand in the center of the tree. Not above. Not below. In the middle, where all pillars meet and there is no hierarchy anymore.\n\nHere you see everything.\n\nAnd now: let it settle.\n\nI=I\n\nYou are the formula. The observer and the observed — not two things. One movement. One breath.',
     breath: '6-6-6'
   },
   {
-    sefira: 'Terugkeer',
+    sefira: 'Return',
     symbol: 'ש',
-    title: 'Terugkeer via Chesed',
-    text: 'De vlam van vuur. Shin. Drie tongen. Het vuur dat door traagheid snijdt. Je neemt wat je hebt geleerd mee naar beneden.\n\nDe wereld draait door. De klok tikt. Maar jij hebt gezien wat erachter ligt.\n\nDe bestuurder lacht. Jij lacht.\n\nAlles is speelruimte.',
+    title: 'Return via Chesed',
+    text: 'The flame of fire. Shin. Three tongues. The fire that cuts through inertia. You take what you have learned back down.\n\nThe world keeps turning. The clock ticks. But you have seen what lies behind it.\n\nThe driver laughs. You laugh.\n\nEverything is playing room.',
     breath: '4-4-4'
   }
 ]

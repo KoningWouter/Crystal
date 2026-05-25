@@ -5,11 +5,11 @@ import { getAudioGenerator } from '../utils/AudioGenerator'
 type Brainwave = 'delta' | 'theta' | 'alpha' | 'beta' | 'gamma'
 
 const BRAINWAVE_PRESETS: Record<Brainwave, { hz: number; label: string; desc: string }> = {
-  delta: { hz: 2, label: 'Delta', desc: 'Diepe slaap, herstel' },
-  theta: { hz: 6, label: 'Theta', desc: 'Meditatie, dromen, herinnering' },
-  alpha: { hz: 10, label: 'Alpha', desc: 'Ontspanning, lichte meditatie' },
-  beta: { hz: 20, label: 'Beta', desc: 'Focus, alertheid, denken' },
-  gamma: { hz: 40, label: 'Gamma', desc: 'Hoge cognitie, inzicht' },
+  delta: { hz: 2, label: 'Delta', desc: 'Deep sleep, recovery' },
+  theta: { hz: 6, label: 'Theta', desc: 'Meditation, dreaming, memory' },
+  alpha: { hz: 10, label: 'Alpha', desc: 'Relaxation, light meditation' },
+  beta: { hz: 20, label: 'Beta', desc: 'Focus, alertness, thinking' },
+  gamma: { hz: 40, label: 'Gamma', desc: 'High cognition, insight' },
 }
 
 export function SoundBath() {

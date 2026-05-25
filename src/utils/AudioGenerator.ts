@@ -1,15 +1,15 @@
 /**
- * AudioGenerator - Fractalistische geluidsgeneratie via Web Audio API
+ * AudioGenerator - Fractalist sound generation via Web Audio API
  * 
- * Frequentie-mapping: A=432Hz als anker
+ * Frequency mapping: A=432Hz as anchor
  *   gematria 10 (Yod) = A4 = 432.00 Hz (exact)
- *   elk gematria stap = 1 semitoon (2^(1/12))
+ *   each gematria step = 1 semitone (2^(1/12))
  *   
- *   gematria 1  =  27.14 Hz  (onder gehoordrempel — voor meditatie/void-werk)
- *   gematria 10 = 432.00 Hz  (A4 — ankerpunt)
- *   gematria 22 = 864.00 Hz  (A5 — een octaaf boven anker)
+ *   gematria 1  =  27.14 Hz  (below hearing threshold — for meditation/void work)
+ *   gematria 10 = 432.00 Hz  (A4 — anchor point)
+ *   gematria 22 = 864.00 Hz  (A5 — one octave above anchor)
  *   
- *   formule: f(g) = 432 * 2^((g - 10) / 12)
+ *   formula: f(g) = 432 * 2^((g - 10) / 12)
  */
 
 export interface AudioConfig {
@@ -71,29 +71,29 @@ export class AudioGenerator {
     return this.audioContext;
   }
 
-  // Lydian intervals (432 Hz basis)
+  // Lydian intervals (432 Hz base)
   private readonly LYDIA_INTERVALS = [1, 10/9, 5/4, 45/32, 3/2, 5/3, 15/8]
 
   /**
-   * gematria → frequentie via Lydian toonladder
-   * De 22 letters = één Lydian octaaf (met herhalingen)
-   * gematria 10 (Yod) = C4 = 432 Hz (anker)
-   * Wrap alle gematria naar hoorbare range (100-1500 Hz)
+   * gematria → frequency via Lydian scale
+   * The 22 letters = one Lydian octave (with repetitions)
+   * gematria 10 (Yod) = C4 = 432 Hz (anchor)
+   * Wrap all gematria to audible range (100-1500 Hz)
    */
   gematriaToFrequency(gematria: number): number {
     const base = 432
     const anchor = 10
 
-    // Bepaal Lydian graad (0-6) via 22-positie
+    // Determine Lydian degree (0-6) via 22-position
     const positionInCycle = (gematria - 1) % 22
     const degreeFromPos = [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0]
     const lydianDegree = degreeFromPos[positionInCycle]
 
-    // Bepaal octaaf relatief aan gematria 10
+    // Determine octave relative to gematria 10
     const cyclesFromAnchor = (gematria - anchor) / 22
     let freq = base * this.LYDIA_INTERVALS[lydianDegree] * Math.pow(2, cyclesFromAnchor)
 
-    // Wrap naar hoorbare range (100-1500 Hz)
+    // Wrap to audible range (100-1500 Hz)
     while (freq > 1500) freq /= 2
     while (freq < 100) freq *= 2
 
@@ -104,7 +104,7 @@ export class AudioGenerator {
     return this.gematriaToFrequency(gematria);
   }
 
-/** Start een toon die blijft hangen (voor meditatie) */
+/** Start a tone that hangs (for meditation) */
   startTone(id: string, frequency: number, duration?: number): void {
     const ctx = this.init()
     if (this.oscillators.has(id)) return
@@ -112,11 +112,11 @@ export class AudioGenerator {
     const osc = ctx.createOscillator()
     const gain = ctx.createGain()
 
-    // Altijd zuivere sinus voor ontspanning
+    // Always pure sine for relaxation
     osc.type = 'sine'
     osc.frequency.setValueAtTime(frequency, ctx.currentTime)
 
-    // Trage inarming (600ms) — zacht, geleidelijk
+    // Slow fade-in (600ms) — soft, gradual
     const attackTime = 0.6
     const vol = this.config.volume * 0.8
     gain.gain.setValueAtTime(0, ctx.currentTime)
@@ -150,8 +150,8 @@ export class AudioGenerator {
   }
 
   /**
-   * Speel letter als harmonisch akkoord: grondtoon + kwint + octaaf
-   * met gestaffelde attack voor een harmony-dronend effect
+   * Play letter as harmonic chord: fundamental + quint + octave
+   * with staggered attack for a harmony-drunk effect
    */
   playLetterChordAt(id: string, frequency: number, duration: number): void {
     const ctx = this.init()
@@ -167,7 +167,7 @@ export class AudioGenerator {
       osc.type = this.config.waveType
       osc.frequency.setValueAtTime(freq, ctx.currentTime)
 
-      // Gestaffelde fade-in (50ms vertraging per toon)
+      // Staggered fade-in (50ms delay per tone)
       const delay = i * 0.05
       gain.gain.setValueAtTime(0, ctx.currentTime)
       gain.gain.linearRampToValueAtTime(this.config.volume * (1 - i * 0.2), ctx.currentTime + delay + 0.1)
@@ -181,7 +181,7 @@ export class AudioGenerator {
     setTimeout(() => this.stopChord(id), duration * 1000)
   }
 
-  /** Speel een enkele toon met specifiek id — ontspannende zuivere golf */
+  /** Play a single tone with specific id — relaxing pure wave */
   playToneAt(id: string, frequency: number, duration: number): void {
     const ctx = this.init()
     if (this.oscillators.has(id)) return
@@ -189,14 +189,14 @@ export class AudioGenerator {
     const osc = ctx.createOscillator()
     const gain = ctx.createGain()
 
-    // Zuivere sinus voor ontspanning
+    // Pure sine for relaxation
     osc.type = 'sine'
     osc.frequency.setValueAtTime(frequency, ctx.currentTime)
 
-    // Trage inarming (400ms) voor zachte start
+    // Slow fade-in (400ms) for soft start
     gain.gain.setValueAtTime(0, ctx.currentTime)
     gain.gain.linearRampToValueAtTime(this.config.volume * 0.8, ctx.currentTime + 0.4)
-    // Langzaam uitfaden (800ms voor het einde)
+    // Slow fade-out (800ms before the end)
     gain.gain.linearRampToValueAtTime(0, ctx.currentTime + duration - 0.8)
 
     osc.connect(gain)
@@ -211,7 +211,7 @@ export class AudioGenerator {
     ;[0, 1, 2].forEach(i => this.stopTone(`${id}_${i}`))
   }
 
-  /** Speel een enkele letter-frequentie */
+  /** Play a single letter frequency */
   playLetter(gematria: number, duration = 3): void {
     const freq = this.gematriaToFrequency(gematria)
     this.startTone(`letter_${gematria}`, freq, duration)
@@ -246,7 +246,7 @@ export class AudioGenerator {
     const osc = this.oscillators.get(id);
     if (!osc || !this.audioContext || !this.masterGain) return;
     const ctx = this.audioContext;
-    // Fade out first (200ms) om klik te voorkomen
+    // Fade out first (200ms) to prevent click
     this.masterGain.gain.setValueAtTime(this.config.volume, ctx.currentTime);
     this.masterGain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.2);
     osc.stop(ctx.currentTime + 0.25);

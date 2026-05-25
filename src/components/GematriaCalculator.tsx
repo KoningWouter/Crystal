@@ -90,7 +90,7 @@ export function GematriaCalculator() {
     if (!gen) return
     gen.stopAll()
 
-    // Verzamel alle frequenties van alle letters
+    // Collect all frequencies from all letters
     const freqs: { gematria: number; freq: number }[] = []
     letters.split('').forEach((char: string) => {
       const value = gematriaValues[char]
@@ -101,7 +101,7 @@ export function GematriaCalculator() {
 
     if (freqs.length === 0) return
 
-    // Speel alle letters samen als akkoord
+    // Play all letters together as chord
     gen.stopAll()
     freqs.forEach(({ freq }, i) => {
       gen.playToneAt(`letter_${i}`, freq, 3)
