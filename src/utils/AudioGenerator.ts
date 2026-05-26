@@ -278,16 +278,26 @@ export class AudioGenerator {
   stopAll(): void {
     if (!this.audioContext || !this.masterGain) return;
     const ctx = this.audioContext;
+
     // Immediately cancel any in-progress ramp and reset to full volume
-    // (old approach with linearRampToValueAtTime(0) would mute new oscillators added in the same tick)
     this.masterGain.gain.cancelScheduledValues(ctx.currentTime);
     this.masterGain.gain.setValueAtTime(this.config.volume, ctx.currentTime);
-    // Stop all oscillators immediately
-    this.oscillators.forEach((osc) => {
-      try { osc.stop(ctx.currentTime + 0.02); } catch (_) {}
+
+    // Stop ALL oscillators immediately (no fade — full stop)
+    this.oscillators.forEach((osc, id) => {
+      try {
+        osc.stop(ctx.currentTime);
+      } catch (_) {}
+      const gain = this.gains.get(id)
+      if (gain) {
+        gain.gain.cancelScheduledValues(ctx.currentTime)
+        gain.gain.setValueAtTime(0, ctx.currentTime)
+      }
     });
+
     this.oscillators.clear();
     this.gains.clear();
+
     // Clear saved state — don't restore old tones after session ends
     this.savedTones = [];
     this.savedBinaural = null;
