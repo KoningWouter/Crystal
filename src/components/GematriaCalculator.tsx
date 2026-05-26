@@ -74,6 +74,7 @@ export function GematriaCalculator() {
   const [showCombos, setShowCombos] = useState(false)
   const [combos, setCombos] = useState<string[]>([])
   const [isSearching, setIsSearching] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
   const [volume, setVolume] = useState(0.3)
   const audioGenRef = useRef<ReturnType<typeof getAudioGenerator> | null>(null)
 
@@ -84,11 +85,20 @@ export function GematriaCalculator() {
     audioGenRef.current.init()
   }
 
+  const stopAudio = () => {
+    if (audioGenRef.current) {
+      audioGenRef.current.stopAll()
+    }
+    setIsPlaying(false)
+  }
+
   const playLetterTones = (letters: string) => {
     initAudio()
     const gen = audioGenRef.current
     if (!gen) return
     gen.stopAll()
+
+    setIsPlaying(true)
 
     // Collect all frequencies from all letters
     const freqs: { gematria: number; freq: number }[] = []
@@ -155,11 +165,11 @@ export function GematriaCalculator() {
         />
         <button
           className="gematria-play-btn"
-          onClick={() => input.trim() && playLetterTones(input)}
+          onClick={() => input.trim() && (isPlaying ? stopAudio() : playLetterTones(input))}
           disabled={!input.trim()}
-          title="Play frequency"
+          title={isPlaying ? "Stop audio" : "Play frequency"}
         >
-          🔊
+          {isPlaying ? '⏹' : '🔊'}
         </button>
         {result !== null && input.trim() !== '' && (
           <div className="gematria-result">
