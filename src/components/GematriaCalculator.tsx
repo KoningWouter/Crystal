@@ -107,15 +107,6 @@ export function GematriaCalculator() {
     })
   }
 
-  const playGematriaFrequency = (value: number) => {
-    initAudio()
-    const gen = audioGenRef.current
-    if (!gen) return
-    gen.stopAll()
-    const freq = gen.gematriaToFrequency(value)
-    gen.startTone('gematria_value', freq)
-  }
-
   useEffect(() => {
     if (input.trim()) {
       setResult(calculateGematria(input))
@@ -247,7 +238,7 @@ export function GematriaCalculator() {
                     className="gematria-result-item"
                     onClick={() => {
                       setInput(combo)
-                      playGematriaFrequency(parseInt(searchTarget))
+                      playLetterTones(combo)
                     }}
                     dir="rtl"
                   >
