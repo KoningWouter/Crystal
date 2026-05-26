@@ -102,10 +102,18 @@ export function GematriaCalculator() {
     if (freqs.length === 0) return
 
     // Play all letters together as chord
-    gen.stopAll()
     freqs.forEach(({ freq }, i) => {
-      gen.playToneAt(`letter_${i}`, freq, 3)
+      gen.startTone(`letter_${i}`, freq)
     })
+  }
+
+  const playGematriaFrequency = (value: number) => {
+    initAudio()
+    const gen = audioGenRef.current
+    if (!gen) return
+    gen.stopAll()
+    const freq = gen.gematriaToFrequency(value)
+    gen.startTone('gematria_value', freq)
   }
 
   useEffect(() => {
@@ -239,7 +247,7 @@ export function GematriaCalculator() {
                     className="gematria-result-item"
                     onClick={() => {
                       setInput(combo)
-                      playLetterTones(combo)
+                      playGematriaFrequency(parseInt(searchTarget))
                     }}
                     dir="rtl"
                   >
