@@ -56,6 +56,7 @@ export function CombinationMeditation() {
     const gemValues: number[] = []
 
     for (const char of chars) {
+      if (char.length !== 1) continue
       const g = LETTER_GEMATRIA[char]
       if (g !== undefined) {
         gemValues.push(g)
