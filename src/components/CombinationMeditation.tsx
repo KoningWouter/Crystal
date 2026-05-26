@@ -19,6 +19,13 @@ for (const l of hebrewLetters as Letter[]) {
   LETTER_GEMATRIA[l.letter] = l.gematria
 }
 
+// Final forms (Sofiot) — not in hebrew_letters.json
+LETTER_GEMATRIA['ך'] = 20   // Kaph Sofit
+LETTER_GEMATRIA['ם'] = 40   // Mem Sofit
+LETTER_GEMATRIA['ן'] = 50   // Nun Sofit
+LETTER_GEMATRIA['ף'] = 80   // Pe Sofit
+LETTER_GEMATRIA['ץ'] = 90   // Tsade Sofit
+
 export function CombinationMeditation() {
   const [input, setInput] = useState('')
   const [volume, setVolume] = useState(0.3)
