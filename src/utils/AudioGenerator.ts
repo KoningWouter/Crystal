@@ -35,9 +35,6 @@ export class AudioGenerator {
   private oscillators: Map<string, OscillatorNode> = new Map();
   private gains: Map<string, GainNode> = new Map();
   private config: Required<AudioConfig>;
-  // Saved state for tab-resume
-  private savedBinaural: { base: number; beat: number } | null = null;
-  private savedTones: Array<{ id: string; frequency: number }> = [];
 
   constructor(config: AudioConfig = {}) {
     this.config = {
@@ -56,17 +53,10 @@ export class AudioGenerator {
       this.masterGain.connect(this.audioContext.destination);
       this.masterGain.gain.setValueAtTime(this.config.volume, this.audioContext.currentTime);
     }
-    // If context was suspended (tab switch), resume and restart all audio
+    // Tab switch: just resume context, don't restore audio
+    // User expects audio to stop when switching tabs
     if (this.audioContext.state === 'suspended') {
-      this.audioContext.resume().then(() => {
-        if (this.savedBinaural) {
-          this.startBinaural(this.savedBinaural.base, this.savedBinaural.beat, false);
-        }
-        // Restore any hanging tones (for meditation/multi-tone sessions)
-        this.savedTones.forEach(t => {
-          this.startTone(t.id, t.frequency);
-        });
-      });
+      this.audioContext.resume();
     } else if (this.audioContext.state === 'closed') {
       this.audioContext = new AudioContext();
       this.masterGain = this.audioContext.createGain();
@@ -105,12 +95,6 @@ export class AudioGenerator {
   startTone(id: string, frequency: number, duration?: number): void {
     const ctx = this.init()
     if (this.oscillators.has(id)) return
-
-    // Save for tab-resume restoration
-    if (!duration) {
-      this.savedTones = this.savedTones.filter(t => t.id !== id)
-      this.savedTones.push({ id, frequency })
-    }
 
     const osc = ctx.createOscillator()
     const gain = ctx.createGain()
@@ -229,7 +213,6 @@ export class AudioGenerator {
       this.stopAll();
     }
     // Save state so init() can resume after tab switch
-    this.savedBinaural = { base: baseFreq, beat: beatHz };
     const ctx = this.init();
 
     const makeChannel = (freq: number, pan: number) => {
@@ -297,10 +280,6 @@ export class AudioGenerator {
 
     this.oscillators.clear();
     this.gains.clear();
-
-    // Clear saved state — don't restore old tones after session ends
-    this.savedTones = [];
-    this.savedBinaural = null;
   }
 
   setVolume(vol: number): void {
