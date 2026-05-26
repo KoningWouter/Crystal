@@ -35,6 +35,9 @@ export class AudioGenerator {
   private oscillators: Map<string, OscillatorNode> = new Map();
   private gains: Map<string, GainNode> = new Map();
   private config: Required<AudioConfig>;
+  // Saved state for tab-resume
+  private savedBinaural: { base: number; beat: number } | null = null;
+  private savedTones: Array<{ id: string; frequency: number }> = [];
 
   constructor(config: AudioConfig = {}) {
     this.config = {
@@ -53,16 +56,17 @@ export class AudioGenerator {
       this.masterGain.connect(this.audioContext.destination);
       this.masterGain.gain.setValueAtTime(this.config.volume, this.audioContext.currentTime);
     }
-    // If context was suspended (tab switch), recreate nodes to avoid stale oscillator refs
+    // If context was suspended (tab switch), resume and restart all audio
     if (this.audioContext.state === 'suspended') {
-      this.oscillators.forEach((osc) => { try { osc.stop(); } catch (_) {} });
-      this.oscillators.clear();
-      this.gains.clear();
-      this.audioContext.close().catch(() => {});
-      this.audioContext = new AudioContext();
-      this.masterGain = this.audioContext.createGain();
-      this.masterGain.connect(this.audioContext.destination);
-      this.masterGain.gain.setValueAtTime(this.config.volume, this.audioContext.currentTime);
+      this.audioContext.resume().then(() => {
+        if (this.savedBinaural) {
+          this.startBinaural(this.savedBinaural.base, this.savedBinaural.beat, false);
+        }
+        // Restore any hanging tones (for meditation/multi-tone sessions)
+        this.savedTones.forEach(t => {
+          this.startTone(t.id, t.frequency);
+        });
+      });
     } else if (this.audioContext.state === 'closed') {
       this.audioContext = new AudioContext();
       this.masterGain = this.audioContext.createGain();
@@ -74,32 +78,22 @@ export class AudioGenerator {
     return this.audioContext;
   }
 
-  // Lydian intervals (432 Hz base)
-  private readonly LYDIA_INTERVALS = [1, 10/9, 5/4, 45/32, 3/2, 5/3, 15/8]
-
   /**
-   * gematria → frequency via Lydian scale
-   * The 22 letters = one Lydian octave (with repetitions)
-   * gematria 10 (Yod) = C4 = 432 Hz (anchor)
-   * Wrap all gematria to audible range (100-1500 Hz)
+   * gematria → frequency mapping
+   * gematria 10 (Yod) = A4 = 432 Hz (anchor)
+   * Each gematria step = 1 semitone
+   * 22 letters = Lydian octave cycle
+   * Wrap all to audible range (150-1500 Hz)
    */
   gematriaToFrequency(gematria: number): number {
-    const base = 432
+    // Yod (gematria 10) = A4 = 432 Hz
     const anchor = 10
-
-    // Determine Lydian degree (0-6) via 22-position
-    const positionInCycle = (gematria - 1) % 22
-    const degreeFromPos = [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0]
-    const lydianDegree = degreeFromPos[positionInCycle]
-
-    // Determine octave relative to gematria 10
-    const cyclesFromAnchor = (gematria - anchor) / 22
-    let freq = base * this.LYDIA_INTERVALS[lydianDegree] * Math.pow(2, cyclesFromAnchor)
-
-    // Wrap to audible range (100-1500 Hz)
+    const A4 = 432
+    // Semitone from A4
+    let freq = A4 * Math.pow(2, (gematria - anchor) / 12)
+    // Wrap to comfortable hearing range
     while (freq > 1500) freq /= 2
-    while (freq < 100) freq *= 2
-
+    while (freq < 150) freq *= 2
     return freq
   }
 
@@ -111,6 +105,12 @@ export class AudioGenerator {
   startTone(id: string, frequency: number, duration?: number): void {
     const ctx = this.init()
     if (this.oscillators.has(id)) return
+
+    // Save for tab-resume restoration
+    if (!duration) {
+      this.savedTones = this.savedTones.filter(t => t.id !== id)
+      this.savedTones.push({ id, frequency })
+    }
 
     const osc = ctx.createOscillator()
     const gain = ctx.createGain()
@@ -224,9 +224,12 @@ export class AudioGenerator {
   }
 
   /** Binaural beat: links baseFreq, rechts baseFreq + beatHz */
-  startBinaural(baseFreq: number, beatHz: number): void {
-    // Stop any existing oscillators first so they don't pile up
-    this.stopAll();
+  startBinaural(baseFreq: number, beatHz: number, restart = true): void {
+    if (restart) {
+      this.stopAll();
+    }
+    // Save state so init() can resume after tab switch
+    this.savedBinaural = { base: baseFreq, beat: beatHz };
     const ctx = this.init();
 
     const makeChannel = (freq: number, pan: number) => {
@@ -285,6 +288,9 @@ export class AudioGenerator {
     });
     this.oscillators.clear();
     this.gains.clear();
+    // Clear saved state — don't restore old tones after session ends
+    this.savedTones = [];
+    this.savedBinaural = null;
   }
 
   setVolume(vol: number): void {

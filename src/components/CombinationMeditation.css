@@ -1,222 +1,91 @@
-/* === Combination Meditation === */
-
 .combo-meditation {
-  padding: 32px 0;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.combo-input-wrap {
+  margin-bottom: 1rem;
+}
+
+.combo-input {
   width: 100%;
-  margin: 0;
-  box-sizing: border-box;
-  max-width: none;
+  padding: 12px 16px;
+  font-size: 1.5rem;
+  background: #1a1a2e;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #e0e0e0;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.combo-meditation-start {
-  width: 100%;
-  text-align: left;
-}
-
-.combo-meditation-start h3 {
-  font-size: 1.4rem;
-  font-weight: 300;
-  color: #e8e4d9;
-  margin-bottom: 8px;
-  letter-spacing: 0.1em;
-}
-
-.combo-meditation-desc {
-  font-size: 0.9rem;
-  color: #6b6b7a;
-  margin-bottom: 32px;
-  line-height: 1.6;
-}
-
-.combo-meditation-input-wrap {
-  margin-bottom: 24px;
-}
-
-.combo-meditation-input-label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: #5a5a6a;
-  margin-bottom: 12px;
-}
-
-.combo-meditation-input {
-  width: 100%;
-  background: #111118;
-  border: 1px solid #2a2a35;
-  border-radius: 12px;
-  padding: 20px 24px;
-  font-size: 2rem;
-  color: #c9a227;
-  font-family: inherit;
-  direction: rtl;
-  transition: border-color 0.2s;
-}
-
-.combo-meditation-input:focus {
+.combo-input:focus {
   outline: none;
-  border-color: #c9a227;
+  border-color: #7f5af0;
 }
 
-.combo-meditation-input::placeholder {
-  color: #3a3a45;
+.combo-input::placeholder {
+  color: #666;
 }
 
-.combo-meditation-start-btn {
-  background: transparent;
-  border: 1px solid #3a3a45;
-  color: #e8e4d9;
-  padding: 14px 32px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
-  font-family: inherit;
-  letter-spacing: 0.05em;
-}
-
-.combo-meditation-start-btn:hover:not(:disabled) {
-  border-color: #c9a227;
-  background: #1e1e2a;
-}
-
-.combo-meditation-start-btn:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-/* === During Meditation === */
-
-.combo-meditation-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.combo-meditation-reset {
-  background: none;
-  border: none;
-  color: #6b6b7a;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: color 0.2s;
-  font-family: inherit;
-}
-
-.combo-meditation-reset:hover {
-  color: #e8e4d9;
-}
-
-.combo-meditation-progress {
-  font-size: 0.75rem;
-  color: #5a5a6a;
-  letter-spacing: 0.1em;
-}
-
-.combo-meditation-letters {
-  font-size: 2rem;
-  color: #c9a227;
-  direction: rtl;
-  margin-bottom: 32px;
-  padding: 16px;
-  background: #111118;
-  border-radius: 12px;
-  border: 1px solid #2a2a35;
-}
-
-.combo-meditation-step {
-  text-align: left;
-  margin-bottom: 32px;
-}
-
-.combo-meditation-step-title {
-  display: block;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: #c9a227;
-  margin-bottom: 12px;
-}
-
-.combo-meditation-step-text {
-  font-size: 1rem;
-  color: #e8e4d9;
-  line-height: 1.8;
-  margin-bottom: 20px;
-}
-
-.combo-meditation-breath {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: #1e1e2a;
-  border-radius: 100px;
-  border: 1px solid #2a2a35;
-}
-
-.combo-meditation-breath-label {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #5a5a6a;
-}
-
-.combo-meditation-breath-value {
-  font-size: 0.85rem;
-  color: #c9a227;
-  letter-spacing: 0.1em;
-}
-
-.combo-meditation-nav {
-  display: flex;
-  gap: 12px;
-}
-
-.combo-meditation-prev,
-.combo-meditation-next {
-  flex: 1;
-  background: #1e1e2a;
-  border: 1px solid #2a2a35;
-  color: #e8e4d9;
-  padding: 14px 20px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
-  font-family: inherit;
-}
-
-.combo-meditation-prev:hover:not(:disabled),
-.combo-meditation-next:hover {
-  border-color: #c9a227;
-}
-
-.combo-meditation-prev:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-.combo-meditation-dots {
+.combo-gematria {
+  margin-top: 0.75rem;
+  padding: 12px;
+  background: #16162a;
+  border-radius: 6px;
   display: flex;
   justify-content: center;
-  gap: 8px;
-  margin-top: 24px;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.combo-meditation-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #2a2a35;
-  transition: background 0.2s;
+.combo-gematria-label {
+  color: #888;
+  font-size: 0.875rem;
 }
 
-.combo-meditation-dot.active {
-  background: #c9a227;
+.combo-gematria-value {
+  color: #e0e0e0;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
-.combo-meditation-dot.done {
-  background: #5a5a6a;
+.combo-btn {
+  width: 100%;
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.combo-btn.play {
+  background: linear-gradient(135deg, #7f5af0, #6b4fd6);
+  color: white;
+}
+
+.combo-btn.play:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(127, 90, 240, 0.3);
+}
+
+.combo-btn.play:disabled {
+  background: #333;
+  color: #666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.combo-btn.stop {
+  background: linear-gradient(135deg, #e04f4f, #c43c3c);
+  color: white;
+}
+
+.combo-btn.stop:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(224, 79, 79, 0.3);
 }
