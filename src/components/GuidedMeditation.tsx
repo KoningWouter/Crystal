@@ -99,6 +99,15 @@ export function GuidedMeditation() {
     }
   }
 
+  // Always stop audio when component unmounts or active changes
+  useEffect(() => {
+    return () => {
+      if (audioGenRef.current) {
+        audioGenRef.current.stopAll()
+      }
+    }
+  }, [])
+
   useEffect(() => {
     if (active) {
       initAudio()
@@ -111,8 +120,6 @@ export function GuidedMeditation() {
       stopAudio()
     }
   }, [active, step])
-
-  // Removed duplicate [step] useEffect — playStepAudio is already called in [active, step]
 
   function next() {
     if (step < daatMeditation.length - 1) {
