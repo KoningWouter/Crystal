@@ -44,8 +44,8 @@ export function TreeOfLife({ letters, selectedLetter, onPathClick }: TreeOfLifeP
   return (
     <div className="tree-of-life">
       <div className="tree-header">
-        <h3>Levensboom</h3>
-        <p>Paden van de 22 Tekens</p>
+        <h3>Tree of Life</h3>
+        <p>Paths of the 22 Characters</p>
       </div>
       <svg viewBox="0 0 100 150" className="tree-svg">
         {/* Render paths first (behind sefirot) */}
@@ -140,8 +140,8 @@ export function TreeOfLife({ letters, selectedLetter, onPathClick }: TreeOfLifeP
         })}
       </svg>
       <div className="tree-legend">
-        <span className="legend-lit">✦ geselecteerd pad</span>
-        <span className="legend-path">— pad</span>
+        <span className="legend-lit">✦ selected path</span>
+        <span className="legend-path">— path</span>
         <span className="legend-da-at">◦ Da'at</span>
       </div>
     </div>
