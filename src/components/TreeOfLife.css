@@ -29,8 +29,8 @@
 }
 
 .tree-path {
-  stroke: #4a4a58;
-  stroke-width: 0.6;
+  stroke: #3a3a48;
+  stroke-width: 0.4;
   transition: stroke 0.3s;
 }
 
@@ -54,7 +54,7 @@
   font-family: serif;
   transition: fill 0.3s;
   paint-order: stroke fill;
-  stroke: #0d0d14 0.4px;
+  stroke: #0d0d14 0.8px;
 }
 
 .tree-path-label.lit {
@@ -70,7 +70,7 @@
   font-weight: bold;
   pointer-events: none;
   paint-order: stroke fill;
-  stroke: #0d0d14 0.3px;
+  stroke: #0d0d14 0.6px;
 }
 
 .tree-sefira {
