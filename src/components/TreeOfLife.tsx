@@ -89,7 +89,7 @@ export function TreeOfLife({ letters, selectedLetter, onPathClick }: TreeOfLifeP
           const letterName = hasLetter ? getLetterName(path.letter) : null
 
           return hasLetter ? (
-            <g key={`label-${pathKey}`}>
+            <g key={`label-${pathKey}`} className="tree-label-clickable" onClick={() => onPathClick ? onPathClick(path.letter) : undefined}>
               <text
                 x={(from.x + to.x) / 2}
                 y={(from.y + to.y) / 2 - 0.8}

@@ -73,6 +73,10 @@
   stroke: #0d0d14 0.6px;
 }
 
+.tree-label-clickable {
+  cursor: pointer;
+}
+
 .tree-sefira {
   cursor: pointer;
 }
