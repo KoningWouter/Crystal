@@ -81,9 +81,10 @@ export function TreeOfLife({ letters, selectedLetter, onPathClick }: TreeOfLifeP
                 <>
                   <text
                     x={(from.x + to.x) / 2}
-                    y={(from.y + to.y) / 2 - (isHovered ? 2.5 : 0)}
+                    y={(from.y + to.y) / 2 - 0.8}
+                    dy="0"
                     className={`tree-path-label ${isSelected ? 'lit' : ''}`}
-                    dominantBaseline="middle"
+                    dominantBaseline="central"
                     textAnchor="middle"
                   >
                     {path.letter}
@@ -91,9 +92,9 @@ export function TreeOfLife({ letters, selectedLetter, onPathClick }: TreeOfLifeP
                   {isHovered && letterName ? (
                     <text
                       x={(from.x + to.x) / 2}
-                      y={(from.y + to.y) / 2 + 3}
+                      y={(from.y + to.y) / 2 + 2.5}
                       className="tree-path-hover-name"
-                      dominantBaseline="middle"
+                      dominantBaseline="central"
                       textAnchor="middle"
                     >
                       {letterName}
