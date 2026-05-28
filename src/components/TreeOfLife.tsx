@@ -48,17 +48,14 @@ export function TreeOfLife({ letters, selectedLetter, onPathClick }: TreeOfLifeP
         <p>Paths of the 22 Characters</p>
       </div>
       <svg viewBox="0 0 100 150" className="tree-svg">
-        {/* Render paths first (behind sefirot) */}
+        {/* Render all path lines only */}
         {paths.map((path) => {
           const from = sefirot.find(s => s.id === path.from)
           const to = sefirot.find(s => s.id === path.to)
           if (!from || !to) return null
-          
+
           const isSelected = selectedLetter ? matchesLetter(path.letter, selectedLetter) : false
-          const hasLetter = path.letter !== ''
           const pathKey = `${path.from}-${path.to}`
-          const isHovered = hoveredPath === pathKey
-          const letterName = hasLetter ? getLetterName(path.letter) : null
 
           return (
             <g
@@ -68,7 +65,6 @@ export function TreeOfLife({ letters, selectedLetter, onPathClick }: TreeOfLifeP
               onMouseLeave={() => setHoveredPath(null)}
               onClick={() => onPathClick ? onPathClick(path.letter) : undefined}
             >
-              {/* Draw path line */}
               <line
                 x1={from.x}
                 y1={from.y}
@@ -76,34 +72,47 @@ export function TreeOfLife({ letters, selectedLetter, onPathClick }: TreeOfLifeP
                 y2={to.y}
                 className={`tree-path ${isSelected ? 'lit' : ''}`}
               />
-              {/* Draw letter at midpoint only if path has a letter */}
-              {hasLetter ? (
-                <>
-                  <text
-                    x={(from.x + to.x) / 2}
-                    y={(from.y + to.y) / 2 - 0.8}
-                    dy="0"
-                    className={`tree-path-label ${isSelected ? 'lit' : ''}`}
-                    dominantBaseline="central"
-                    textAnchor="middle"
-                  >
-                    {path.letter}
-                  </text>
-                  {isHovered && letterName ? (
-                    <text
-                      x={(from.x + to.x) / 2}
-                      y={(from.y + to.y) / 2 + 2.5}
-                      className="tree-path-hover-name"
-                      dominantBaseline="central"
-                      textAnchor="middle"
-                    >
-                      {letterName}
-                    </text>
-                  ) : null}
-                </>
-              ) : null}
             </g>
           )
+        })}
+
+        {/* Render all path labels on top (separate layer) */}
+        {paths.map((path) => {
+          const from = sefirot.find(s => s.id === path.from)
+          const to = sefirot.find(s => s.id === path.to)
+          if (!from || !to) return null
+
+          const isSelected = selectedLetter ? matchesLetter(path.letter, selectedLetter) : false
+          const hasLetter = path.letter !== ''
+          const pathKey = `${path.from}-${path.to}`
+          const isHovered = hoveredPath === pathKey
+          const letterName = hasLetter ? getLetterName(path.letter) : null
+
+          return hasLetter ? (
+            <g key={`label-${pathKey}`}>
+              <text
+                x={(from.x + to.x) / 2}
+                y={(from.y + to.y) / 2 - 0.8}
+                dy="0"
+                className={`tree-path-label ${isSelected ? 'lit' : ''}`}
+                dominantBaseline="central"
+                textAnchor="middle"
+              >
+                {path.letter}
+              </text>
+              {isHovered && letterName ? (
+                <text
+                  x={(from.x + to.x) / 2}
+                  y={(from.y + to.y) / 2 + 2.5}
+                  className="tree-path-hover-name"
+                  dominantBaseline="central"
+                  textAnchor="middle"
+                >
+                  {letterName}
+                </text>
+              ) : null}
+            </g>
+          ) : null
         })}
         
         {/* Render sefirot on top */}
