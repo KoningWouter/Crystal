@@ -47,7 +47,7 @@ export function TreeOfLife({ letters, selectedLetter, onPathClick }: TreeOfLifeP
         <h3>Levensboom</h3>
         <p>Paden van de 22 Tekens</p>
       </div>
-      <svg viewBox="0 0 100 100" className="tree-svg">
+      <svg viewBox="0 0 100 150" className="tree-svg">
         {/* Render paths first (behind sefirot) */}
         {paths.map((path) => {
           const from = sefirot.find(s => s.id === path.from)

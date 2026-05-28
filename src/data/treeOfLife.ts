@@ -4,17 +4,17 @@
 // Verticale proportionering - Tiferet en Yesod lager voorAleph/Mem verbindingen
 
 export const sefirot = [
-  { id: 'keter', name: 'Keter', x: 50, y: 10 },      // Kroon - bovenaan (iets omlaag voor tekst-ruimte)
-  { id: 'binah', name: 'Binah', x: 20, y: 18 },     // Begrip - LINKS boven
-  { id: 'chokhmah', name: 'Chokhmah', x: 80, y: 18 }, // Wijsheid - RECHTS boven
-  { id: 'da_at', name: "Da'at", x: 50, y: 24 },     // Kennis - korte afstand van Keter
-  { id: 'gevurah', name: 'Gevurah', x: 20, y: 38 },  // Strengheid - LINKS midden
-  { id: 'chesed', name: 'Chesed', x: 80, y: 38 },    // Liefde - RECHTS midden
-  { id: 'tiferet', name: 'Tiferet', x: 50, y: 50 },   // Schoonheid - centraal
-  { id: 'hod', name: 'Hod', x: 20, y: 62 },           // Majesteit - LINKS onder
-  { id: 'netzach', name: 'Netzach', x: 80, y: 62 },   // Overwinning - RECHTS onder
-  { id: 'yesod', name: 'Yesod', x: 50, y: 66 },       // Fundament - centraal
-  { id: 'malkuth', name: 'Malkuth', x: 50, y: 88 },   // Koninkrijk - onderaan
+  { id: 'keter', name: 'Keter', x: 50, y: 15 },      // Kroon - bovenaan
+  { id: 'binah', name: 'Binah', x: 20, y: 27 },     // Begrip - LINKS boven
+  { id: 'chokhmah', name: 'Chokhmah', x: 80, y: 27 }, // Wijsheid - RECHTS boven
+  { id: 'da_at', name: "Da'at", x: 50, y: 36 },     // Kennis
+  { id: 'gevurah', name: 'Gevurah', x: 20, y: 57 },  // Strengheid - LINKS midden
+  { id: 'chesed', name: 'Chesed', x: 80, y: 57 },    // Liefde - RECHTS midden
+  { id: 'tiferet', name: 'Tiferet', x: 50, y: 75 },   // Schoonheid - centraal
+  { id: 'hod', name: 'Hod', x: 20, y: 93 },           // Majesteit - LINKS onder
+  { id: 'netzach', name: 'Netzach', x: 80, y: 93 },   // Overwinning - RECHTS onder
+  { id: 'yesod', name: 'Yesod', x: 50, y: 99 },       // Fundament - centraal
+  { id: 'malkuth', name: 'Malkuth', x: 50, y: 132 },   // Koninkrijk - onderaan
 ]
 
 // Alle 25 paden met exacte Hebreeuwse letters
