@@ -53,6 +53,8 @@
   text-anchor: middle;
   font-family: serif;
   transition: fill 0.3s;
+  paint-order: stroke fill;
+  stroke: #0d0d14 0.4px;
 }
 
 .tree-path-label.lit {
@@ -67,6 +69,8 @@
   font-family: sans-serif;
   font-weight: bold;
   pointer-events: none;
+  paint-order: stroke fill;
+  stroke: #0d0d14 0.3px;
 }
 
 .tree-sefira {
