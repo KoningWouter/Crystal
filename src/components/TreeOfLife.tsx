@@ -19,6 +19,13 @@ interface TreeOfLifeProps {
 
 export function TreeOfLife({ letters, selectedLetter, onPathClick }: TreeOfLifeProps) {
   const [hoveredSefira, setHoveredSefira] = useState<string | null>(null)
+  const [hoveredPath, setHoveredPath] = useState<string | null>(null)
+
+  // Helper to get English name for a Hebrew symbol
+  const getLetterName = (symbol: string): string | null => {
+    const found = letters.find(l => l.symbol === symbol)
+    return found ? found.letter : null
+  }
 
   // Helper to match letter by Hebrew symbol or English name
   const matchesLetter = (pathLetter: string, selected: string): boolean => {
@@ -49,11 +56,16 @@ export function TreeOfLife({ letters, selectedLetter, onPathClick }: TreeOfLifeP
           
           const isSelected = selectedLetter ? matchesLetter(path.letter, selectedLetter) : false
           const hasLetter = path.letter !== ''
+          const pathKey = `${path.from}-${path.to}`
+          const isHovered = hoveredPath === pathKey
+          const letterName = hasLetter ? getLetterName(path.letter) : null
 
           return (
             <g
-              key={`${path.from}-${path.to}`}
+              key={pathKey}
               className="tree-path-clickable"
+              onMouseEnter={() => setHoveredPath(pathKey)}
+              onMouseLeave={() => setHoveredPath(null)}
               onClick={() => onPathClick ? onPathClick(path.letter) : undefined}
             >
               {/* Draw path line */}
@@ -66,15 +78,28 @@ export function TreeOfLife({ letters, selectedLetter, onPathClick }: TreeOfLifeP
               />
               {/* Draw letter at midpoint only if path has a letter */}
               {hasLetter ? (
-                <text
-                  x={(from.x + to.x) / 2}
-                  y={(from.y + to.y) / 2}
-                  className={`tree-path-label ${isSelected ? 'lit' : ''}`}
-                  dominantBaseline="middle"
-                  textAnchor="middle"
-                >
-                  {path.letter}
-                </text>
+                <>
+                  <text
+                    x={(from.x + to.x) / 2}
+                    y={(from.y + to.y) / 2 - (isHovered ? 2.5 : 0)}
+                    className={`tree-path-label ${isSelected ? 'lit' : ''}`}
+                    dominantBaseline="middle"
+                    textAnchor="middle"
+                  >
+                    {path.letter}
+                  </text>
+                  {isHovered && letterName ? (
+                    <text
+                      x={(from.x + to.x) / 2}
+                      y={(from.y + to.y) / 2 + 3}
+                      className="tree-path-hover-name"
+                      dominantBaseline="middle"
+                      textAnchor="middle"
+                    >
+                      {letterName}
+                    </text>
+                  ) : null}
+                </>
               ) : null}
             </g>
           )

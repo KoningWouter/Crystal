@@ -34,6 +34,10 @@
   transition: stroke 0.3s;
 }
 
+.tree-path-clickable:hover .tree-path {
+  stroke: #8a8a98;
+}
+
 .tree-path-clickable {
   cursor: pointer;
 }
@@ -54,6 +58,15 @@
 .tree-path-label.lit {
   fill: #e8c84a;
   font-weight: bold;
+}
+
+.tree-path-hover-name {
+  font-size: 3.5px;
+  fill: #c9a227;
+  text-anchor: middle;
+  font-family: sans-serif;
+  font-weight: bold;
+  pointer-events: none;
 }
 
 .tree-sefira {
