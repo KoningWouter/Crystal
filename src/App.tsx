@@ -180,7 +180,7 @@ function App() {
               letters={hebrewLetters}
               selectedLetter={selected.letter}
               onPathClick={(letter) => {
-                const found = hebrewLetters.find((l: Letter) => l.letter === letter)
+                const found = hebrewLetters.find((l: Letter) => l.letter === letter || l.symbol === letter)
                 if (found) handleSelectLetter(found)
               }}
             />

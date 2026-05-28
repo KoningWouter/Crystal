@@ -56,13 +56,30 @@
   font-weight: bold;
 }
 
+.tree-sefira {
+  cursor: pointer;
+}
+
 .tree-sefira circle {
   fill: #2a2a35;
-  transition: fill 0.3s;
+  transition: fill 0.3s, r 0.2s;
+}
+
+.tree-sefira.hovered circle {
+  fill: #6a6a88;
 }
 
 .tree-sefira.highlighted circle {
   fill: #c9a227;
+}
+
+.tree-sefira-name {
+  font-size: 4px;
+  fill: #e8c84a;
+  text-anchor: middle;
+  font-family: sans-serif;
+  font-weight: bold;
+  pointer-events: none;
 }
 
 .tree-legend {
@@ -78,6 +95,17 @@
   color: #5a5a6a;
 }
 
-.legend-lit {
-  color: #c9a227;
+.legend-da-at {
+  color: #8a8a9a;
+}
+
+.tree-sefira.da-at circle,
+.tree-sefira.da-at-circle {
+  fill: #4a4a58;
+  stroke: #6a6a78;
+  stroke-width: 0.5;
+}
+
+.tree-sefira.da-at.highlighted circle {
+  fill: #c9a227;
 }

@@ -1,4 +1,5 @@
 import { sefirot, paths } from '../data/treeOfLife'
+import { useState } from 'react'
 import './TreeOfLife.css'
 
 interface Letter {
@@ -17,30 +18,45 @@ interface TreeOfLifeProps {
 }
 
 export function TreeOfLife({ letters, selectedLetter, onPathClick }: TreeOfLifeProps) {
-  const selectedPath = selectedLetter
-    ? paths.find(p => p.letter === selectedLetter)
-    : null
+  const [hoveredSefira, setHoveredSefira] = useState<string | null>(null)
 
-  const getLetterSymbol = (letterName: string) =>
-    letters.find(l => l.letter === letterName)?.symbol
+  // Helper to match letter by Hebrew symbol or English name
+  const matchesLetter = (pathLetter: string, selected: string): boolean => {
+    if (pathLetter === selected) return true
+    const found = letters.find(l => l.symbol === pathLetter)
+    return found ? found.letter === selected : false
+  }
+
+  // Get highlighted sefira IDs for selected letter
+  const highlightedSefiraIds = selectedLetter
+    ? paths
+        .filter(p => matchesLetter(p.letter, selectedLetter))
+        .flatMap(p => [p.from, p.to])
+    : []
 
   return (
     <div className="tree-of-life">
       <div className="tree-header">
-        <h3>Tree of Life</h3>
-        <p>Paths of the 22 Signs</p>
+        <h3>Levensboom</h3>
+        <p>Paden van de 22 Tekens</p>
       </div>
       <svg viewBox="0 0 100 100" className="tree-svg">
+        {/* Render paths first (behind sefirot) */}
         {paths.map((path) => {
-          const from = sefirot.find(s => s.id === path.from)!
-          const to = sefirot.find(s => s.id === path.to)!
-          const isSelected = selectedPath?.letter === path.letter
+          const from = sefirot.find(s => s.id === path.from)
+          const to = sefirot.find(s => s.id === path.to)
+          if (!from || !to) return null
+          
+          const isSelected = selectedLetter ? matchesLetter(path.letter, selectedLetter) : false
+          const hasLetter = path.letter !== ''
+
           return (
             <g
               key={`${path.from}-${path.to}`}
               className="tree-path-clickable"
-              onClick={() => onPathClick?.(path.letter)}
+              onClick={() => onPathClick ? onPathClick(path.letter) : undefined}
             >
+              {/* Draw path line */}
               <line
                 x1={from.x}
                 y1={from.y}
@@ -48,28 +64,59 @@ export function TreeOfLife({ letters, selectedLetter, onPathClick }: TreeOfLifeP
                 y2={to.y}
                 className={`tree-path ${isSelected ? 'lit' : ''}`}
               />
-              <text
-                x={(from.x + to.x) / 2}
-                y={(from.y + to.y) / 2 - 1.5}
-                className={`tree-path-label ${isSelected ? 'lit' : ''}`}
-              >
-                {getLetterSymbol(path.letter)}
-              </text>
+              {/* Draw letter at midpoint only if path has a letter */}
+              {hasLetter ? (
+                <text
+                  x={(from.x + to.x) / 2}
+                  y={(from.y + to.y) / 2}
+                  className={`tree-path-label ${isSelected ? 'lit' : ''}`}
+                  dominantBaseline="middle"
+                  textAnchor="middle"
+                >
+                  {path.letter}
+                </text>
+              ) : null}
             </g>
           )
         })}
-        {sefirot.map((sefira) => (
-          <g
-            key={sefira.id}
-            className={`tree-sefira ${selectedPath && (sefira.id === selectedPath.from || sefira.id === selectedPath.to) ? 'highlighted' : ''}`}
-          >
-            <circle cx={sefira.x} cy={sefira.y} r="2.5" />
-          </g>
-        ))}
+        
+        {/* Render sefirot on top */}
+        {sefirot.map((sefira) => {
+          const isHighlighted = highlightedSefiraIds.includes(sefira.id)
+          const isHovered = hoveredSefira === sefira.id
+          const isDaat = sefira.id === 'da_at'
+          return (
+            <g
+              key={sefira.id}
+              className={`tree-sefira ${isHighlighted ? 'highlighted' : ''} ${isHovered ? 'hovered' : ''} ${isDaat ? 'da-at' : ''}`}
+              onMouseEnter={() => setHoveredSefira(sefira.id)}
+              onMouseLeave={() => setHoveredSefira(null)}
+            >
+              <circle 
+                cx={sefira.x} 
+                cy={sefira.y} 
+                r={isHovered ? 4 : (isDaat ? 3 : 2.5)} 
+                className={isDaat ? 'da-at-circle' : ''}
+              />
+              {isHovered ? (
+                <text
+                  x={sefira.x}
+                  y={sefira.y - 6}
+                  className="tree-sefira-name"
+                  dominantBaseline="middle"
+                  textAnchor="middle"
+                >
+                  {sefira.name}
+                </text>
+              ) : null}
+            </g>
+          )
+        })}
       </svg>
       <div className="tree-legend">
-        <span className="legend-lit">✦ selected path</span>
-        <span className="legend-path">— path</span>
+        <span className="legend-lit">✦ geselecteerd pad</span>
+        <span className="legend-path">— pad</span>
+        <span className="legend-da-at">◦ Da'at</span>
       </div>
     </div>
   )
