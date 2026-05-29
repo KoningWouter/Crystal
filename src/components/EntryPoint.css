@@ -1,0 +1,119 @@
+.entry-question {
+  padding: 8px 0 32px;
+}
+
+.entry-title {
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: #e8e4d9;
+  letter-spacing: 0.1em;
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.entry-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.entry-choice {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #111118;
+  border: 1px solid #2a2a35;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  text-align: left;
+}
+
+.entry-choice:hover {
+  border-color: #c9a227;
+  background: #18182a;
+}
+
+.entry-choice-emoji {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  width: 36px;
+  text-align: center;
+}
+
+.entry-choice-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.entry-choice-text strong {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #e8e4d9;
+  letter-spacing: 0.05em;
+}
+
+.entry-choice-text small {
+  font-size: 0.75rem;
+  color: #6b6b7a;
+  letter-spacing: 0.03em;
+}
+
+/* === Letter view === */
+
+.entry-letters {
+  padding: 8px 0 32px;
+}
+
+.entry-back {
+  background: transparent;
+  border: none;
+  color: #5a5a6a;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0 0 20px 0;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+
+.entry-back:hover {
+  color: #a8a498;
+}
+
+.entry-filtered {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.entry-letter-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 24px;
+  background: #111118;
+  border: 1px solid #2a2a35;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  min-width: 90px;
+}
+
+.entry-letter-btn:hover {
+  border-color: #c9a227;
+  background: #18182a;
+}
+
+.entry-letter-symbol {
+  font-size: 2rem;
+  color: #c9a227;
+}
+
+.entry-letter-name {
+  font-size: 0.8rem;
+  color: #a8a498;
+  letter-spacing: 0.05em;
+}

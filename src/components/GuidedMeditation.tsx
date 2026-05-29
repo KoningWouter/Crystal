@@ -185,7 +185,7 @@ export function GuidedMeditation() {
             setShowCalibration(true)
           }}
         >
-          Opnieuw calibreren
+          Recalibrate
         </button>
       </div>
     )

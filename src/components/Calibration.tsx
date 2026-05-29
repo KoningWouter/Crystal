@@ -10,12 +10,12 @@ interface CalibrationProps {
 type CalibrationState = 'intro' | 'guidance' | 'confirming' | 'ready'
 
 const GUIDANCE_STEPS = [
-  { id: 'neutral', label: 'Begin neutraal', instruction: 'Zit rechtop, hoofd recht, schouders ontspannen' },
-  { id: 'forward', label: 'Naar voren', instruction: 'Buig langzaam naar voren tot het harmonieus klinkt' },
-  { id: 'back', label: 'Naar achteren', instruction: 'Buig voorzichtig naar achteren om te voelen' },
-  { id: 'left', label: 'Links draaien', instruction: 'Draai je hoofd/lichaam naar links' },
-  { id: 'right', label: 'Rechts draaien', instruction: 'Draai naar rechts' },
-  { id: 'center', label: 'Vind je center', instruction: 'Beweeg langzaam tot het perfect klinkt' },
+  { id: 'neutral', label: 'Start Neutral', instruction: 'Sit upright, head straight, shoulders relaxed' },
+  { id: 'forward', label: 'Lean Forward', instruction: 'Bend slowly forward until it sounds harmonious' },
+  { id: 'back', label: 'Lean Back', instruction: 'Lean gently backward to feel' },
+  { id: 'left', label: 'Turn Left', instruction: 'Turn your head/body to the left' },
+  { id: 'right', label: 'Turn Right', instruction: 'Turn to the right' },
+  { id: 'center', label: 'Find Your Center', instruction: 'Move slowly until it sounds just right' },
 ]
 
 export function Calibration({ onComplete, onCancel }: CalibrationProps) {
@@ -98,14 +98,14 @@ export function Calibration({ onComplete, onCancel }: CalibrationProps) {
         {state === 'intro' && (
           <>
             <div className="calibration-icon">⚖️</div>
-            <h2>Calibratie</h2>
+            <h2>Calibration</h2>
             <p className="calibration-desc">
-              Het binaurale veld heeft een driedimensionaal centrum. 
-              Beweeg je lichaam om je persoonlijke sweet spot te vinden.
+              The binaural field has a three-dimensional center. 
+              Move your body to find your personal sweet spot.
             </p>
             <p className="calibration-note">
-              Dit duurt ongeveer 1 minuut. Je hoeft niets te forceren — 
-              laat het geluid je naar het centrum leiden.
+              This takes about 1 minute. Don't force anything — 
+              let the sound guide you to the center.
             </p>
             <div className="calibration-volume">
               <label>🔊 {Math.round(volume * 100)}%</label>
@@ -120,10 +120,10 @@ export function Calibration({ onComplete, onCancel }: CalibrationProps) {
             </div>
             <div className="calibration-actions">
               <button className="calibration-start-btn" onClick={startGuidance}>
-                Start Calibratie
+                Start Calibration
               </button>
               <button className="calibration-skip-btn" onClick={() => { stopAudio(); onCancel() }}>
-                Overslaan
+                Skip
               </button>
             </div>
           </>
@@ -154,15 +154,15 @@ export function Calibration({ onComplete, onCancel }: CalibrationProps) {
             </div>
 
             <div className="calibration-hint">
-              ✨ Als het harmonieus voelt, ga naar de volgende stap
+              ✨ When it feels harmonious, move to the next step
             </div>
 
             <div className="calibration-actions">
               <button className="calibration-next-btn" onClick={nextStep}>
-                {stepIndex < GUIDANCE_STEPS.length - 1 ? 'Volgende →' : 'Klaar'}
+                {stepIndex < GUIDANCE_STEPS.length - 1 ? 'Next →' : 'Done'}
               </button>
               <button className="calibration-back-btn" onClick={() => { stopAudio(); onCancel() }}>
-                Annuleren
+                Cancel
               </button>
             </div>
           </>
@@ -171,10 +171,10 @@ export function Calibration({ onComplete, onCancel }: CalibrationProps) {
         {state === 'confirming' && (
           <>
             <div className="calibration-icon">🎯</div>
-            <h2>Vind je centrum</h2>
+            <h2>Find Your Center</h2>
             <p className="calibration-desc">
-              Beweeg tot het hardste, harmonischste punt. 
-              Houd die positie vast.
+              Move until the loudest, most harmonious point. 
+              Hold that position.
             </p>
             
             <div className="calibration-confirm-visual">
@@ -193,7 +193,7 @@ export function Calibration({ onComplete, onCancel }: CalibrationProps) {
 
             <div className="calibration-hold-text">
               {holdProgress < 100 
-                ? `Hou vast... ${Math.round(holdProgress)}%`
+                ? `Hold... ${Math.round(holdProgress)}%`
                 : 'Perfect!'
               }
             </div>
@@ -203,7 +203,7 @@ export function Calibration({ onComplete, onCancel }: CalibrationProps) {
               stopAudio()
               onCancel()
             }}>
-              Annuleren
+              Cancel
             </button>
           </>
         )}
@@ -211,10 +211,10 @@ export function Calibration({ onComplete, onCancel }: CalibrationProps) {
         {state === 'ready' && (
           <>
             <div className="calibration-icon">✨</div>
-            <h2>Gecalibreerd</h2>
+            <h2>Calibrated</h2>
             <p className="calibration-desc">
-              Je centrum is gevonden. Onthoud deze positie — 
-              de meditatie werkt het best vanuit dit punt.
+              Your center is found. Remember this position — 
+              the meditation works best from this point.
             </p>
             
             <div className="calibration-ready-visual">
@@ -227,7 +227,7 @@ export function Calibration({ onComplete, onCancel }: CalibrationProps) {
                 stopAudio()
                 onComplete()
               }}>
-                Start Meditatie
+                Start Meditation
               </button>
             </div>
           </>

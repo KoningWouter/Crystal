@@ -1,0 +1,50 @@
+.daatview {
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.daatview-symbol {
+  font-size: 5rem;
+  color: #c9a227;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.daatview-title {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #b8b4a8;
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+
+.daatview-breath {
+  font-size: 1.2rem;
+  color: #c9a227;
+  letter-spacing: 0.2em;
+  margin-bottom: 28px;
+  opacity: 0.7;
+}
+
+.daatview-text {
+  max-width: 520px;
+}
+
+.daatview-text p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #a8a498;
+  margin-bottom: 16px;
+}
+
+.daatview-kern {
+  font-size: 2rem !important;
+  color: #c9a227 !important;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  margin: 24px 0 !important;
+  text-align: center;
+  width: 100%;
+}

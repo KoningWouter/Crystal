@@ -5,6 +5,8 @@ import { GuidedMeditation } from './components/GuidedMeditation'
 import { GematriaCalculator } from './components/GematriaCalculator'
 import { CombinationMeditation } from './components/CombinationMeditation'
 import { SoundBath } from './components/SoundBath'
+import { EntryPoint } from './components/EntryPoint'
+import { DaatView } from './components/DaatView'
 import './App.css'
 
 interface Letter {
@@ -22,6 +24,8 @@ function App() {
   const [showGematria, setShowGematria] = useState(false)
   const [showComboMeditation, setShowComboMeditation] = useState(false)
   const [showSoundBath, setShowSoundBath] = useState(false)
+  const [showEntry, setShowEntry] = useState(false)
+  const [showDaat, setShowDaat] = useState(false)
   const [notes, setNotes] = useState<Record<string, string>>({})
   const [isSaving, setIsSaving] = useState(false)
 
@@ -52,6 +56,8 @@ function App() {
     setShowGematria(false)
     setShowComboMeditation(false)
     setShowSoundBath(false)
+    setShowEntry(false)
+    setShowDaat(false)
     setSelected(l)
   }
 
@@ -60,6 +66,8 @@ function App() {
     setShowGematria(false)
     setShowComboMeditation(false)
     setShowSoundBath(false)
+    setShowEntry(false)
+    setShowDaat(false)
     setShowMeditation(true)
   }
 
@@ -68,6 +76,8 @@ function App() {
     setShowMeditation(false)
     setShowComboMeditation(false)
     setShowSoundBath(false)
+    setShowEntry(false)
+    setShowDaat(false)
     setShowGematria(true)
   }
 
@@ -76,6 +86,8 @@ function App() {
     setShowMeditation(false)
     setShowGematria(false)
     setShowSoundBath(false)
+    setShowEntry(false)
+    setShowDaat(false)
     setShowComboMeditation(true)
   }
 
@@ -84,7 +96,29 @@ function App() {
     setShowMeditation(false)
     setShowGematria(false)
     setShowComboMeditation(false)
+    setShowEntry(false)
+    setShowDaat(false)
     setShowSoundBath(true)
+  }
+
+  function handleShowEntry() {
+    setSelected(null)
+    setShowMeditation(false)
+    setShowGematria(false)
+    setShowComboMeditation(false)
+    setShowSoundBath(false)
+    setShowDaat(false)
+    setShowEntry(true)
+  }
+
+  function handleShowDaat() {
+    setSelected(null)
+    setShowMeditation(false)
+    setShowGematria(false)
+    setShowComboMeditation(false)
+    setShowSoundBath(false)
+    setShowEntry(false)
+    setShowDaat(true)
   }
 
   return (
@@ -113,6 +147,13 @@ function App() {
           >
             <span className="combo-icon">◈</span>
             <span className="combo-name">Combination Meditation</span>
+          </li>
+          <li
+            className={`entry-link ${showEntry ? 'active' : ''}`}
+            onClick={handleShowEntry}
+          >
+            <span className="entry-icon">⌂</span>
+            <span className="entry-name">Enter</span>
           </li>
           <li
             className={`soundbath-link ${showSoundBath ? 'active' : ''}`}
@@ -150,6 +191,18 @@ function App() {
         ) : showSoundBath ? (
           <div className="detail-inner">
             <SoundBath />
+          </div>
+        ) : showDaat ? (
+          <div className="detail-inner">
+            <DaatView />
+          </div>
+        ) : showEntry ? (
+          <div className="detail-inner">
+            <EntryPoint
+              letters={hebrewLetters}
+              onSelectLetter={handleSelectLetter}
+              onDaatView={handleShowDaat}
+            />
           </div>
         ) : selected ? (
           <div className="detail-inner">
