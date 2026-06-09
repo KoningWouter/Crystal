@@ -5,8 +5,8 @@
 }
 
 body {
-  background: #0a0a0f;
-  color: #e8e4d9;
+  background: #1a1a28;
+  color: #e4e0d6;
   font-family: 'Segoe UI', system-ui, sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
@@ -32,8 +32,8 @@ html {
     width: 100vw;
     padding: 0;
     border-right: none;
-    border-top: 1px solid #2a2a35;
-    background: #0d0d14;
+    border-top: 1px solid #3a3a55;
+    background: #1e1e2c;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -134,9 +134,9 @@ html {
 
 .sidebar {
   width: 280px;
-  background: #111118;
+  background: #1e1e2c;
   padding: 32px 24px;
-  border-right: 1px solid #2a2a35;
+  border-right: 1px solid #3a3a55;
   flex-shrink: 0;
 }
 
